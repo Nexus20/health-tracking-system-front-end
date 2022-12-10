@@ -1,6 +1,8 @@
 export interface IAuthState {
     token: string,
     email: string,
-    shopId?: string,
-    buyerId?: string,
+    doctorId?: string,
+    patientId?: string,
+    hospitalAdministratorId?: string,
+    patientCaretakerId?: string,
 }

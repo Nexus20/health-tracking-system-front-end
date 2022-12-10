@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -13,9 +12,15 @@ import {NgxsLoggerPluginModule} from "@ngxs/logger-plugin";
 import {NgxsReduxDevtoolsPluginModule} from "@ngxs/devtools-plugin";
 import {AuthState} from "./users/states/auth.state";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
+import {JwtModule} from "@auth0/angular-jwt";
+import {InterceptorsModule} from "./core/interceptors/interceptors.module";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
+}
+
+export function tokenGetter() {
+    return localStorage.getItem("token");
 }
 
 @NgModule({
@@ -43,6 +48,13 @@ export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
         }),
         NgxsLoggerPluginModule.forRoot(),
         NgxsReduxDevtoolsPluginModule.forRoot(),
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+                allowedDomains: ["localhost:7088"],
+            }
+        }),
+        InterceptorsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

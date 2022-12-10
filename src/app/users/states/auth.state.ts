@@ -11,8 +11,10 @@ import {JwtHelperService} from "@auth0/angular-jwt";
     defaults: {
         token: '',
         email: '',
-        shopId: undefined,
-        buyerId: undefined
+        doctorId: undefined,
+        patientCaretakerId: undefined,
+        hospitalAdministratorId: undefined,
+        patientId: undefined
     }
 })
 @Injectable()
@@ -22,13 +24,23 @@ export class AuthState {
     }
 
     @Selector()
-    static shopId(state: IAuthState) {
-        return state.shopId;
+    static doctorId(state: IAuthState) {
+        return state.doctorId;
     }
 
     @Selector()
-    static buyerId(state: IAuthState) {
-        return state.buyerId;
+    static patientId(state: IAuthState) {
+        return state.patientId;
+    }
+
+    @Selector()
+    static patientCaretakerId(state: IAuthState) {
+        return state.patientCaretakerId;
+    }
+
+    @Selector()
+    static hospitalAdministratorId(state: IAuthState) {
+        return state.hospitalAdministratorId;
     }
 
     @Selector()
@@ -46,8 +58,10 @@ export class AuthState {
                 patchState({
                     email: payload.email,
                     token,
-                    buyerId: decodedToken["BuyerId"],
-                    shopId: decodedToken["ShopId"]
+                    doctorId: decodedToken["DoctorId"],
+                    patientCaretakerId: decodedToken["PatientCaretakerId"],
+                    hospitalAdministratorId: decodedToken["HospitalAdministratorId"],
+                    patientId: decodedToken["PatientId"],
                 })
             }));
     }
@@ -57,8 +71,10 @@ export class AuthState {
         patchState({
             email: "",
             token: "",
-            buyerId: undefined,
-            shopId: undefined
+            doctorId: undefined,
+            patientCaretakerId: undefined,
+            hospitalAdministratorId: undefined,
+            patientId: undefined
         })
     }
 
