@@ -17,6 +17,7 @@ import {InterceptorsModule} from "./core/interceptors/interceptors.module";
 import {HospitalState} from "./hospitals/states/hospital.state";
 import {UserService} from "./users/user.service";
 import {HospitalService} from "./hospitals/hospital.service";
+import {HospitalsResolver} from "./hospitals/resolvers/hospitals.resolver";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -59,7 +60,7 @@ export function tokenGetter() {
         }),
         InterceptorsModule
     ],
-    providers: [UserService, HospitalService],
+    providers: [HospitalsResolver, UserService, HospitalService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

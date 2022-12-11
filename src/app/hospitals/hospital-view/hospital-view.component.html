@@ -2,7 +2,21 @@
 <main>
     <div class="container">
         <div class="row">
-            <div class="col-12"></div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        {{hospitalInfo.name}}
+                    </div>
+                    <div class="card-body">
+                        <div>Address: {{hospitalInfo.address}}</div>
+                        <div>Doctors: {{hospitalInfo.doctorsCount}}</div>
+                        <div>Patients: {{hospitalInfo.patientsCount}}</div>
+                    </div>
+                    <div class="card-footer">
+                        <a [routerLink]="['edit']" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>

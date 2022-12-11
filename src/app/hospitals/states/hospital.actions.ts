@@ -25,7 +25,7 @@ export class AddHospital {
 export class UpdateHospital {
     static readonly type = '[Hospitals] Update';
 
-    constructor(public payload: any, public id: string, public i: number) {
+    constructor(public id: string, public payload: any) {
     }
 }
 

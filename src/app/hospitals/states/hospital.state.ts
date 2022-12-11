@@ -2,7 +2,7 @@ import {Action, Selector, State, StateContext, Store} from "@ngxs/store";
 import {HospitalStateModel} from "./hospital.model";
 import {Injectable} from "@angular/core";
 import {HospitalService} from "../hospital.service";
-import {AddHospital, GetHospitals} from "./hospital.actions";
+import {AddHospital, GetHospitals, UpdateHospital} from "./hospital.actions";
 import {tap} from "rxjs";
 
 @State<HospitalStateModel>({
@@ -51,6 +51,26 @@ export class HospitalState {
             ctx.patchState({
                 hospitals: [...state.hospitals, returnData]
             })
+        }))
+    }
+
+    @Action(UpdateHospital)
+    updateDataOfState(ctx: StateContext<HospitalStateModel>, {id, payload}: UpdateHospital) {
+
+        console.log("Update", id);
+
+        return this.hospitalService.update(id, payload).pipe(tap(returnData => {
+
+            const state = ctx.getState();
+            const hospitals = [...state.hospitals];
+            const index = hospitals.findIndex(x => x.id == id);
+            hospitals[index] = returnData;
+            console.log("All hospitals after update", hospitals);
+
+            ctx.setState({
+                ...state,
+                hospitals: hospitals,
+            });
         }))
     }
 }

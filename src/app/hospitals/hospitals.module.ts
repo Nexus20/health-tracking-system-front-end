@@ -9,13 +9,15 @@ import {HospitalsResolver} from "./resolvers/hospitals.resolver";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { HospitalEditComponent } from './hospital-edit/hospital-edit.component';
 
 
 @NgModule({
     declarations: [
         HospitalsComponent,
         HospitalCreateComponent,
-        HospitalViewComponent
+        HospitalViewComponent,
+        HospitalEditComponent
     ],
     imports: [
         CommonModule,
@@ -29,6 +31,7 @@ import {MatInputModule} from "@angular/material/input";
             },
             {path: 'create', component: HospitalCreateComponent},
             {path: ':id', component: HospitalViewComponent},
+            {path: ':id/edit', component: HospitalEditComponent},
         ]),
         SharedModule,
         ReactiveFormsModule,

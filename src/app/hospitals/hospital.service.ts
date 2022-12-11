@@ -24,4 +24,8 @@ export class HospitalService {
     public create = (body: FormData) => {
         return this.httpClient.post<IHospitalResult>(`${this.api}hospital`, body);
     }
+
+    public update = (id: string, body: FormData) => {
+        return this.httpClient.put<IHospitalResult>(`${this.api}hospital/${id}`, body);
+    }
 }
