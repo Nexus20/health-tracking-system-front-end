@@ -9,7 +9,15 @@ import {HospitalsResolver} from "./resolvers/hospitals.resolver";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import { HospitalEditComponent } from './hospital-edit/hospital-edit.component';
+import {HospitalEditComponent} from './hospital-edit/hospital-edit.component';
+import {
+    HospitalViewAdministratorsComponent
+} from './hospital-view-administrators/hospital-view-administrators.component';
+import {HospitalAdministratorsResolver} from "./resolvers/hospital-administrators.resolver";
+import {
+    HospitalCreateAdministratorComponent
+} from './hospital-create-administrator/hospital-create-administrator.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
@@ -17,7 +25,9 @@ import { HospitalEditComponent } from './hospital-edit/hospital-edit.component';
         HospitalsComponent,
         HospitalCreateComponent,
         HospitalViewComponent,
-        HospitalEditComponent
+        HospitalEditComponent,
+        HospitalViewAdministratorsComponent,
+        HospitalCreateAdministratorComponent
     ],
     imports: [
         CommonModule,
@@ -32,13 +42,25 @@ import { HospitalEditComponent } from './hospital-edit/hospital-edit.component';
             {path: 'create', component: HospitalCreateComponent},
             {path: ':id', component: HospitalViewComponent},
             {path: ':id/edit', component: HospitalEditComponent},
+            {
+                path: ':id/administrators',
+                component: HospitalViewAdministratorsComponent,
+                resolve: {
+                    administrators: HospitalAdministratorsResolver
+                }
+            },
+            {
+                path: ':id/administrators/add-new',
+                component: HospitalCreateAdministratorComponent
+            },
         ]),
         SharedModule,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
+        MatDatepickerModule,
     ],
-    providers: [HospitalsResolver]
+    providers: [HospitalsResolver, HospitalAdministratorsResolver]
 })
 export class HospitalsModule {
 }

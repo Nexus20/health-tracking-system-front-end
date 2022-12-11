@@ -12,8 +12,9 @@
                         <div>Doctors: {{hospitalInfo.doctorsCount}}</div>
                         <div>Patients: {{hospitalInfo.patientsCount}}</div>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer d-flex gap-2">
                         <a [routerLink]="['edit']" class="btn btn-primary">Edit</a>
+                        <a [routerLink]="['administrators']" class="btn btn-primary">Administrators</a>
                     </div>
                 </div>
             </div>

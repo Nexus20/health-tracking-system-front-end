@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IHospitalResult} from "./models/hospital.result";
+import {IHospitalAdministratorResult} from "./models/IHospitalAdministratorResult";
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,10 @@ export class HospitalService {
 
     public get = (queryParams?: {}) => {
         return this.httpClient.get<IHospitalResult[]>(`${this.api}hospital`, {params: queryParams});
+    }
+
+    public getAdministrators = (id: string, queryParams?: {}) => {
+        return this.httpClient.get<IHospitalAdministratorResult[]>(`${this.api}hospital/${id}/administrators`, {params: queryParams});
     }
 
     public getById = (id: string) => {

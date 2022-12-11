@@ -18,6 +18,8 @@ import {HospitalState} from "./hospitals/states/hospital.state";
 import {UserService} from "./users/user.service";
 import {HospitalService} from "./hospitals/hospital.service";
 import {HospitalsResolver} from "./hospitals/resolvers/hospitals.resolver";
+import {HospitalAdministratorState} from "./hospital-administrators/states/hospital-administrator.state";
+import {MatNativeDateModule} from "@angular/material/core";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -29,7 +31,7 @@ export function tokenGetter() {
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         BrowserModule,
@@ -46,7 +48,7 @@ export function tokenGetter() {
             defaultLanguage: 'en',
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
         }),
-        NgxsModule.forRoot([AuthState, HospitalState]),
+        NgxsModule.forRoot([AuthState, HospitalState, HospitalAdministratorState]),
         NgxsStoragePluginModule.forRoot({
             key: ['auth'],
         }),
@@ -58,7 +60,8 @@ export function tokenGetter() {
                 allowedDomains: ["localhost:7088"],
             }
         }),
-        InterceptorsModule
+        InterceptorsModule,
+        MatNativeDateModule
     ],
     providers: [HospitalsResolver, UserService, HospitalService],
     bootstrap: [AppComponent]

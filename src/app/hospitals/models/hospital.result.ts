@@ -6,3 +6,4 @@ export interface IHospitalResult extends IBaseResult {
     doctorsCount: number;
     patientsCount: number;
 }
+

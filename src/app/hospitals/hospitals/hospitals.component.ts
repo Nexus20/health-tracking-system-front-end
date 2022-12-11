@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Select, Store} from '@ngxs/store';
-import {GetHospitals} from "../states/hospital.actions";
-import {HospitalState} from "../states/hospital.state";
-import {Observable} from "rxjs";
+import {Store} from '@ngxs/store';
 import {IHospitalResult} from "../models/hospital.result";
 import {ActivatedRoute} from "@angular/router";
 
@@ -14,7 +11,6 @@ import {ActivatedRoute} from "@angular/router";
 export class HospitalsComponent implements OnInit {
 
     hospitals!: IHospitalResult[];
-    @Select(HospitalState.selectHospitalsFromState) hospitalsSelector!: Observable<IHospitalResult[]>
 
     constructor(private store: Store, private activatedRoute: ActivatedRoute) {
     }
