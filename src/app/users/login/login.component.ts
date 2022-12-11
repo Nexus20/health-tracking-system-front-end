@@ -4,6 +4,7 @@ import {Store} from "@ngxs/store";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
+import {GetOwnProfile} from "../../profile/state/profile.actions";
 
 @Component({
     selector: 'app-login',
@@ -37,7 +38,11 @@ export class LoginComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._destroy$))
             .subscribe({
                 next: () => {
-                    this.router.navigateByUrl('/');
+                    this.store.dispatch(new GetOwnProfile())
+                        .pipe(takeUntil(this._destroy$))
+                        .subscribe(() => {
+                            this.router.navigateByUrl('/');
+                        });
                 }, error: (error) => {
                     if (error.message) {
                         this.wrongCredentialsError = error.message;

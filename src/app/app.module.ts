@@ -20,6 +20,7 @@ import {HospitalService} from "./hospitals/hospital.service";
 import {HospitalsResolver} from "./hospitals/resolvers/hospitals.resolver";
 import {HospitalAdministratorState} from "./hospital-administrators/states/hospital-administrator.state";
 import {MatNativeDateModule} from "@angular/material/core";
+import {ProfileState} from "./profile/state/profile.state";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -48,9 +49,9 @@ export function tokenGetter() {
             defaultLanguage: 'en',
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
         }),
-        NgxsModule.forRoot([AuthState, HospitalState, HospitalAdministratorState]),
+        NgxsModule.forRoot([AuthState, HospitalState, HospitalAdministratorState, ProfileState]),
         NgxsStoragePluginModule.forRoot({
-            key: ['auth'],
+            key: ['auth', 'profile'],
         }),
         NgxsLoggerPluginModule.forRoot(),
         NgxsReduxDevtoolsPluginModule.forRoot(),

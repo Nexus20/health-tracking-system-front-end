@@ -16,6 +16,16 @@ const routes: Routes = [
         path: 'hospital-administrators',
         loadChildren: () => import('./hospital-administrators/hospital-administrators.module').then(m => m.HospitalAdministratorsModule),
         canActivate: [AuthGuard],
+    },
+    {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'doctors',
+        loadChildren: () => import('./doctors/doctors.module').then(m => m.DoctorsModule),
+        canActivate: [AuthGuard]
     }
 ];
 

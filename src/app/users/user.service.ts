@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {ILoginResponse} from "./models/ILoginResponse";
 import {IUserResult} from "./models/IUserResult";
+import {IProfileResult} from "../profile/models/IProfileResult";
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class UserService {
 
     public register(payload: { firstname: string, lastname: string, phone: string, email: string, password: string, confirmPassword: string }): Observable<IUserResult> {
         return this.httpClient.post<IUserResult>(`${this.api}Auth/Register`, payload);
+    }
+
+    public getOwnProfile() {
+        return this.httpClient.get<IProfileResult>(`${this.api}users/profile`);
     }
 }
