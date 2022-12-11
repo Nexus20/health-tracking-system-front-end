@@ -14,6 +14,9 @@ import {AuthState} from "./users/states/auth.state";
 import {NgxsStoragePluginModule} from "@ngxs/storage-plugin";
 import {JwtModule} from "@auth0/angular-jwt";
 import {InterceptorsModule} from "./core/interceptors/interceptors.module";
+import {HospitalState} from "./hospitals/states/hospital.state";
+import {UserService} from "./users/user.service";
+import {HospitalService} from "./hospitals/hospital.service";
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -42,7 +45,7 @@ export function tokenGetter() {
             defaultLanguage: 'en',
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
         }),
-        NgxsModule.forRoot([AuthState]),
+        NgxsModule.forRoot([AuthState, HospitalState]),
         NgxsStoragePluginModule.forRoot({
             key: ['auth'],
         }),
@@ -56,7 +59,7 @@ export function tokenGetter() {
         }),
         InterceptorsModule
     ],
-    providers: [],
+    providers: [UserService, HospitalService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

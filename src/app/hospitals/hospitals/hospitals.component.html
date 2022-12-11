@@ -1,1 +1,29 @@
-<p>hospitals works!</p>
+<app-header></app-header>
+<main>
+    <div class="container">
+        <div class="row">
+            <h2 class="col-12 mb-3">
+                Hospitals
+            </h2>
+        </div>
+        <div class="row">
+            <ng-container *ngFor="let hospital of hospitals">
+                <div class="col-6 gap-1">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            {{hospital.name}}
+                        </div>
+                        <div class="card-body">
+                            <div>Address: {{hospital.address}}</div>
+                            <div>Doctors: {{hospital.doctorsCount}}</div>
+                            <div>Patients: {{hospital.patientsCount}}</div>
+                        </div>
+                        <div class="card-footer">
+                            <a [routerLink]="[hospital.id]" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</main>
