@@ -1,5 +1,5 @@
 import {Action, Selector, State, StateContext, Store} from "@ngxs/store";
-import {HospitalStateModel} from "./hospital.model";
+import {HospitalStateModel} from "./hospital.state-model";
 import {Injectable} from "@angular/core";
 import {HospitalService} from "../hospital.service";
 import {AddHospital, GetHospitals, UpdateHospital} from "./hospital.actions";

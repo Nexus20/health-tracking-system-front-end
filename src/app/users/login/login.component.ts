@@ -34,15 +34,11 @@ export class LoginComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.store.dispatch(new Login(this.sighInForm.value))
+        this.store.dispatch([new Login(this.sighInForm.value), new GetOwnProfile()])
             .pipe(takeUntil(this._destroy$))
             .subscribe({
                 next: () => {
-                    this.store.dispatch(new GetOwnProfile())
-                        .pipe(takeUntil(this._destroy$))
-                        .subscribe(() => {
-                            this.router.navigateByUrl('/');
-                        });
+                    this.router.navigateByUrl('/');
                 }, error: (error) => {
                     if (error.message) {
                         this.wrongCredentialsError = error.message;

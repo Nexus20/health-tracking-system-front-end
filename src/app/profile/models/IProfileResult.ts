@@ -10,8 +10,8 @@ export interface IProfileResult {
     phone: string;
     email: string;
     birthDate: Date;
-    doctorProfile?: IDoctorResult;
-    patientProfile?: IPatientResult;
-    patientCareTakerProfile?: IPatientCaretakerResult;
-    hospitalAdministratorProfile?: IHospitalAdministratorResult;
+    doctor?: IDoctorResult;
+    patient?: IPatientResult;
+    patientCareTaker?: IPatientCaretakerResult;
+    hospitalAdministrator?: IHospitalAdministratorResult;
 }

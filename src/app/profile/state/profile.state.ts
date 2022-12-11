@@ -25,17 +25,17 @@ export class ProfileState {
 
     @Selector()
     static selectAdministratorHospitalId(state: ProfileStateModel) {
-        return state.profile?.hospitalAdministratorProfile?.hospitalId;
+        return state.profile?.hospitalAdministrator?.hospitalId;
     }
 
     @Selector()
     static selectDoctorHospitalId(state: ProfileStateModel) {
-        return state.profile?.doctorProfile?.hospitalId;
+        return state.profile?.doctor?.hospitalId;
     }
 
     @Selector()
     static selectPatientHospitalId(state: ProfileStateModel) {
-        return state.profile?.patientProfile?.hospitalId;
+        return state.profile?.patient?.hospitalId;
     }
 
     @Action(GetOwnProfile)
