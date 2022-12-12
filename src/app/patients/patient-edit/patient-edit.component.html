@@ -5,10 +5,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        Edit doctor
+                        Edit patient
                     </div>
                     <div class="card-body pt-4 ps-4">
-                        <form [formGroup]="editDoctorForm" (ngSubmit)="submitForm()">
+                        <form [formGroup]="editPatientForm" (ngSubmit)="submitForm()">
                             <div>
                                 <mat-form-field appearance="outline">
                                     <mat-label>Firstname</mat-label>
@@ -49,7 +49,7 @@
                                 </mat-form-field>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary" [disabled]="!editDoctorForm.valid">
+                                <button type="submit" class="btn btn-primary" [disabled]="!editPatientForm.valid">
                                     Apply changes
                                 </button>
                             </div>

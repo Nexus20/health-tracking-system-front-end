@@ -1,0 +1,32 @@
+<app-header></app-header>
+<main>
+    <div class="container">
+        <div class="row">
+            <h2 class="col-12 mb-3">
+                Patients
+            </h2>
+            <div class="col-12 mb-3">
+                <a [routerLink]="['create']" class="btn btn-primary">Add patient</a>
+            </div>
+        </div>
+        <div class="row">
+            <ng-container *ngFor="let patient of patients">
+                <div class="col-6 gap-1">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            {{patient.firstName}} {{patient.lastName}}
+                        </div>
+                        <div class="card-body">
+                            <div>Email: {{patient.email}}</div>
+                            <div>Phone: {{patient.phone}}</div>
+                            <div>Birth date: {{patient.birthDate}}</div>
+                        </div>
+                        <div class="card-footer">
+                            <a [routerLink]="[patient.id]" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</main>

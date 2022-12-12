@@ -1,0 +1,27 @@
+<app-header></app-header>
+<main>
+    <div class="container">
+        <div class="row">
+            <h2 class="col-12 mb-3">
+                Patient profile
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        {{patient.firstName}} {{patient.lastName}}
+                    </div>
+                    <div class="card-body">
+                        <div>Email: {{patient.email}}</div>
+                        <div>Phone: {{patient.phone}}</div>
+                        <div>Birth date: {{patient.birthDate}}</div>
+                    </div>
+                    <div class="card-footer">
+                        <a [routerLink]="['edit']" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
