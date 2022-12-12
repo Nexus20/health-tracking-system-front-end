@@ -18,6 +18,7 @@ import {
     HospitalCreateAdministratorComponent
 } from './hospital-create-administrator/hospital-create-administrator.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
+import {HospitalResolver} from "./resolvers/hospital.resolver";
 
 
 @NgModule({
@@ -40,8 +41,20 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
                 }
             },
             {path: 'create', component: HospitalCreateComponent},
-            {path: ':id', component: HospitalViewComponent},
-            {path: ':id/edit', component: HospitalEditComponent},
+            {
+                path: ':id',
+                component: HospitalViewComponent,
+                resolve: {
+                    hospital: HospitalResolver
+                }
+            },
+            {
+                path: ':id/edit',
+                component: HospitalEditComponent,
+                resolve: {
+                    hospital: HospitalResolver
+                }
+            },
             {
                 path: ':id/administrators',
                 component: HospitalViewAdministratorsComponent,
@@ -60,7 +73,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
         MatInputModule,
         MatDatepickerModule,
     ],
-    providers: [HospitalsResolver, HospitalAdministratorsResolver]
+    providers: [HospitalsResolver, HospitalResolver, HospitalAdministratorsResolver]
 })
 export class HospitalsModule {
 }

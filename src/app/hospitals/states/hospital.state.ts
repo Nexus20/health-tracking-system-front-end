@@ -1,4 +1,4 @@
-import {Action, Selector, State, StateContext, Store} from "@ngxs/store";
+import {Action, createSelector, Selector, State, StateContext, Store} from "@ngxs/store";
 import {HospitalStateModel} from "./hospital.state-model";
 import {Injectable} from "@angular/core";
 import {HospitalService} from "../hospital.service";
@@ -23,11 +23,17 @@ export class HospitalState {
         return state.hospitals;
     }
 
-    @Selector()
-    static selectHospitalById(state: HospitalStateModel) {
-        return (shopId: string) => {
-            return state.hospitals.filter(x => x.id == shopId)[0];
-        }
+    // @Selector()
+    // static selectHospitalById(state: HospitalStateModel) {
+    //     return (shopId: string) => {
+    //         return state.hospitals.filter(x => x.id == shopId)[0];
+    //     }
+    // }
+
+    static selectHospitalById(id: string) {
+        return createSelector([HospitalState], (state: HospitalStateModel) => {
+            return state.hospitals.filter(x => x.id == id)[0];
+        });
     }
 
     @Action(GetHospitals)

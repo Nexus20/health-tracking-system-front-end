@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {IHospitalResult} from "../models/hospital.result";
 import {Store} from "@ngxs/store";
 import {ActivatedRoute} from "@angular/router";
-import {HospitalState} from "../states/hospital.state";
-import {map} from "rxjs";
 
 @Component({
   selector: 'app-hospital-view',
@@ -19,12 +17,9 @@ export class HospitalViewComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.hospitalId = this.activatedRoute.snapshot.params['id'];
-        this.store.select(HospitalState.selectHospitalById)
-            .pipe(map(filter => filter(this.hospitalId)))
-            .subscribe(data => {
-                this.hospitalInfo = data;
-                console.log(data);
-            })
+        this.activatedRoute.data.subscribe(({hospital}) => {
+            this.hospitalInfo = hospital;
+            console.log(hospital);
+        })
     }
 }
