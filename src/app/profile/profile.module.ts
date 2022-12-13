@@ -3,11 +3,13 @@ import {CommonModule} from '@angular/common';
 import {ProfileComponent} from './profile/profile.component';
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
+import {ProfileHospitalComponent} from './profile-hospital/profile-hospital.component';
 
 
 @NgModule({
     declarations: [
-        ProfileComponent
+        ProfileComponent,
+        ProfileHospitalComponent
     ],
     imports: [
         CommonModule,

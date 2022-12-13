@@ -1,4 +1,4 @@
-import { PatientStateModel } from './patient.state-model';
+import {PatientStateModel} from './patient.state-model';
 
 describe('PatientStateModel', () => {
   it('should create an instance', () => {

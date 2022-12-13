@@ -2,7 +2,7 @@ import {Action, createSelector, Selector, State, StateContext, Store} from "@ngx
 import {HospitalStateModel} from "./hospital.state-model";
 import {Injectable} from "@angular/core";
 import {HospitalService} from "../hospital.service";
-import {AddHospital, GetHospitals, UpdateHospital} from "./hospital.actions";
+import {AddHospital, GetHospitalById, GetHospitals, UpdateHospital} from "./hospital.actions";
 import {tap} from "rxjs";
 
 @State<HospitalStateModel>({
@@ -47,6 +47,17 @@ export class HospitalState {
                 hospitals: returnData
             });
         }))
+    }
+
+    @Action(GetHospitalById)
+    getHospitalByIdFromState(ctx: StateContext<HospitalStateModel>, {id}: GetHospitalById) {
+        return this.hospitalService.getById(id).pipe(tap(returnData => {
+            const state = ctx.getState();
+
+            ctx.patchState({
+                hospitals: [...state.hospitals, returnData]
+            })
+        }));
     }
 
     @Action(AddHospital)

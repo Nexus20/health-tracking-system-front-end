@@ -2,8 +2,9 @@ import {Action, createSelector, Selector, State, StateContext, Store} from "@ngx
 import {DoctorStateModel} from "./doctor.state-model";
 import {Injectable} from "@angular/core";
 import {tap} from "rxjs";
-import {AddDoctor, GetDoctorById, GetDoctors, UpdateDoctor} from "./doctor.actions";
+import {AddDoctor, GetDoctorById, GetDoctors, GetDoctorsByHospitalId, UpdateDoctor} from "./doctor.actions";
 import {DoctorService} from "../services/doctor.service";
+import {HospitalService} from "../../hospitals/hospital.service";
 
 @State<DoctorStateModel>({
     name: 'doctors',
@@ -15,7 +16,7 @@ import {DoctorService} from "../services/doctor.service";
 @Injectable()
 export class DoctorState {
 
-    constructor(private store: Store, private doctorService: DoctorService) {
+    constructor(private store: Store, private doctorService: DoctorService, private hospitalService: HospitalService) {
     }
 
     @Selector()
@@ -64,6 +65,18 @@ export class DoctorState {
                 doctors: [...state.doctors, returnData]
             })
         }));
+    }
+
+    @Action(GetDoctorsByHospitalId)
+    getDoctorsByHospitalFromState(ctx: StateContext<DoctorStateModel>, {hospitalId, queryParams}: GetDoctorsByHospitalId) {
+        return this.hospitalService.getDoctors(hospitalId, queryParams).pipe(tap(returnData => {
+            const state = ctx.getState();
+
+            ctx.setState({
+                ...state,
+                doctors: returnData
+            });
+        }))
     }
 
     @Action(AddDoctor)

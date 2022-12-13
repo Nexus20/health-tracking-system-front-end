@@ -13,6 +13,13 @@ export class GetPatientById {
     }
 }
 
+export class GetPatientsByHospitalId {
+    static readonly type = '[Patients] GetByHospitalId';
+
+    constructor(public hospitalId: string, public queryParams?: {}) {
+    }
+}
+
 //Create
 export class AddPatient {
     static readonly type = '[Patients] Add';

@@ -3,6 +3,8 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IHospitalResult} from "./models/hospital.result";
 import {IHospitalAdministratorResult} from "./models/IHospitalAdministratorResult";
+import {IDoctorResult} from "./models/IDoctorResult";
+import {IPatientResult} from "./models/IPatientResult";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,14 @@ export class HospitalService {
 
     public getAdministrators = (id: string, queryParams?: {}) => {
         return this.httpClient.get<IHospitalAdministratorResult[]>(`${this.api}hospital/${id}/administrators`, {params: queryParams});
+    }
+
+    public getDoctors = (id: string, queryParams?: {}) => {
+        return this.httpClient.get<IDoctorResult[]>(`${this.api}hospital/${id}/doctors`, {params: queryParams});
+    }
+
+    public getPatients = (id: string, queryParams?: {}) => {
+        return this.httpClient.get<IPatientResult[]>(`${this.api}hospital/${id}/patients`, {params: queryParams});
     }
 
     public getById = (id: string) => {

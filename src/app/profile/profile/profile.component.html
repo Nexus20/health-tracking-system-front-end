@@ -5,9 +5,22 @@
             <h2>Welcome, {{profileInfo.firstName}} {{profileInfo.lastName}}</h2>
         </div>
         <div class="row">
-            <div class="col-12">
-
+            <div class="col-12 mb-3">
+                <div class="card">
+                    <div class="card-header">Your personal information</div>
+                    <div class="card-body">
+                        <div>Email: {{profileInfo.email}}</div>
+                        <div>Phone: {{profileInfo.phone}}</div>
+                        <div>Birth date: {{profileInfo.birthDate}}</div>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
             </div>
+            <ng-container *ngIf="hospitalId !== undefined">
+                <div class="col-12">
+                    <app-profile-hospital [hospitalId]="hospitalId"></app-profile-hospital>
+                </div>
+            </ng-container>
         </div>
     </div>
 </main>

@@ -49,7 +49,7 @@ export class HospitalAdministratorState {
     }
 
     @Action(GetHospitalAdministrators)
-    getShopProductsFromState(ctx: StateContext<HospitalAdministratorStateModel>, {hospitalId, queryParams}: GetHospitalAdministrators) {
+    getHospitalAdministratorsFromState(ctx: StateContext<HospitalAdministratorStateModel>, {hospitalId, queryParams}: GetHospitalAdministrators) {
         return this.hospitalService.getAdministrators(hospitalId, queryParams).pipe(tap(returnData => {
             const state = ctx.getState();
 

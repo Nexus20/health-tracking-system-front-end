@@ -3,7 +3,8 @@ import {PatientStateModel} from "./patient.state-model";
 import {Injectable} from "@angular/core";
 import {tap} from "rxjs";
 import {PatientService} from "../services/patient.service";
-import {AddPatient, GetPatientById, GetPatients, UpdatePatient} from "./patient.actions";
+import {AddPatient, GetPatientById, GetPatients, GetPatientsByHospitalId, UpdatePatient} from "./patient.actions";
+import {HospitalService} from "../../hospitals/hospital.service";
 
 @State<PatientStateModel>({
     name: 'patients',
@@ -15,7 +16,7 @@ import {AddPatient, GetPatientById, GetPatients, UpdatePatient} from "./patient.
 @Injectable()
 export class PatientState {
 
-    constructor(private store: Store, private patientService: PatientService) {
+    constructor(private store: Store, private patientService: PatientService, private hospitalService: HospitalService) {
     }
 
     @Selector()
@@ -64,6 +65,18 @@ export class PatientState {
                 patients: [...state.patients, returnData]
             })
         }));
+    }
+
+    @Action(GetPatientsByHospitalId)
+    getPatientsByHospitalFromState(ctx: StateContext<PatientStateModel>, {hospitalId, queryParams}: GetPatientsByHospitalId) {
+        return this.hospitalService.getPatients(hospitalId, queryParams).pipe(tap(returnData => {
+            const state = ctx.getState();
+
+            ctx.setState({
+                ...state,
+                patients: returnData
+            });
+        }))
     }
 
     @Action(AddPatient)

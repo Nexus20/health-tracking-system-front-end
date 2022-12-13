@@ -1,4 +1,4 @@
-import { PatientResolver } from './patient.resolver';
+import {PatientResolver} from './patient.resolver';
 
 describe('PatientResolver', () => {
   it('should create an instance', () => {
