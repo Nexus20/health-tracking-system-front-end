@@ -5,11 +5,17 @@ import {RouterModule} from "@angular/router";
 import {HospitalAdministratorResolver} from "./resolvers/hospital-administrator.resolver";
 import {SharedModule} from "../shared/shared.module";
 import {TranslateModule} from "@ngx-translate/core";
+import { HospitalAdministratorEditComponent } from './hospital-administrator-edit/hospital-administrator-edit.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 
 @NgModule({
     declarations: [
-        HospitalAdministratorViewComponent
+        HospitalAdministratorViewComponent,
+        HospitalAdministratorEditComponent
     ],
     imports: [
         CommonModule,
@@ -19,11 +25,22 @@ import {TranslateModule} from "@ngx-translate/core";
                 component: HospitalAdministratorViewComponent,
                 resolve: {
                     administrator: HospitalAdministratorResolver
-                }
+                },
+            },
+            {
+                path: ':id/edit',
+                component: HospitalAdministratorEditComponent,
+                resolve: {
+                    administrator: HospitalAdministratorResolver
+                },
             }
         ]),
         SharedModule,
         TranslateModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDatepickerModule,
     ],
     providers: [HospitalAdministratorResolver]
 })

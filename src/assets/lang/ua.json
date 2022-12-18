@@ -4,7 +4,8 @@
     "common": {
         "details": "Детальніше",
         "add": "Додати",
-        "edit": "Редагувати"
+        "edit": "Редагувати",
+        "apply": "Зберегти зміни"
     },
     "header": {
         "brand": "Health tracking system",
@@ -15,6 +16,15 @@
         "hospitals": "Мед. заклади",
         "doctors": "Лікарі",
         "patients": "Пацієнти"
+    },
+    "user": {
+        "firstname": "Ім'я",
+        "lastname": "Прізвище",
+        "patronymic": "По батькові",
+        "phone": "Телефон",
+        "email": "Email",
+        "dob": "Дата народження",
+        "password": "Пароль"
     },
     "profile": {
         "personal": {
@@ -63,6 +73,12 @@
     },
     "hospital-administrator-view": {
         "header": "Профіль адміністратора медичного закладу"
+    },
+    "hospital-administrator-edit": {
+        "header": "Редагувати профіль адміністратора медичного закладу"
+    },
+    "hospital-administrator-create": {
+        "header": "Створити новий профіль адміністратора медичного закладу"
     },
     "roles": {
         "root": "root",

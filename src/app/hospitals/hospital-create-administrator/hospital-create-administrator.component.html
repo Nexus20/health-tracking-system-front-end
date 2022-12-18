@@ -1,53 +1,56 @@
 <app-header></app-header>
 <main>
     <div class="container">
+        <div class="row mb-3">
+            <h1 class="col-12">
+                {{'hospital-administrator-create.header' | translate}}
+            </h1>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                        Add new administrator
-                    </div>
+                    <div class="card-header"></div>
                     <div class="card-body pt-4 ps-4">
                         <form [formGroup]="addHospitalAdministratorForm" (ngSubmit)="submitForm()">
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Firstname</mat-label>
-                                    <input matInput placeholder="Firstname" formControlName="firstname">
+                                    <mat-label>{{'user.firstname' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'user.firstname' | translate}}" formControlName="firstname">
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Lastname</mat-label>
-                                    <input matInput placeholder="Lastname" formControlName="lastname">
+                                    <mat-label>{{'user.lastname' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'user.lastname' | translate}}" formControlName="lastname">
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Patronymic</mat-label>
-                                    <input matInput placeholder="Patronymic" formControlName="patronymic">
+                                    <mat-label>{{'user.patronymic' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'user.patronymic' | translate}}" formControlName="patronymic">
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Phone</mat-label>
-                                    <input matInput placeholder="Phone" formControlName="phone">
+                                    <mat-label>{{'user.phone' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'user.phone' | translate}}" formControlName="phone">
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Email</mat-label>
-                                    <input matInput type="email" placeholder="Email" formControlName="email">
+                                    <mat-label>{{'user.email' | translate}}</mat-label>
+                                    <input matInput type="email" placeholder="{{'user.email' | translate}}" formControlName="email">
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Password</mat-label>
-                                    <input matInput type="password" placeholder="Password" formControlName="password">
+                                    <mat-label>{{'user.password' | translate}}</mat-label>
+                                    <input matInput type="password" placeholder="{{'user.password' | translate}}" formControlName="password">
                                 </mat-form-field>
                             </div>
                             <div class="mb-3">
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Choose a date</mat-label>
+                                    <mat-label>{{'user.dob' | translate}}</mat-label>
                                     <input matInput [matDatepicker]="picker" formControlName="birthDate">
                                     <mat-hint>MM/DD/YYYY</mat-hint>
                                     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -56,7 +59,7 @@
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary" [disabled]="!addHospitalAdministratorForm.valid">
-                                    Add new administrator
+                                    {{'common.add' | translate}}
                                 </button>
                             </div>
                         </form>

@@ -4,7 +4,8 @@
     "common": {
         "details": "Details",
         "add": "Add new",
-        "edit": "Edit"
+        "edit": "Edit",
+        "apply": "Apply changes"
     },
     "header": {
         "brand": "Health tracking system",
@@ -15,6 +16,15 @@
         "hospitals": "Hospitals",
         "doctors": "Doctors",
         "patients": "Patients"
+    },
+    "user": {
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "patronymic": "Patronymic",
+        "phone": "Phone",
+        "email": "Email",
+        "dob": "Date of birth",
+        "password": "Password"
     },
     "profile": {
         "personal": {
@@ -63,6 +73,12 @@
     },
     "hospital-administrator-view": {
         "header": "Hospital administrator profile"
+    },
+    "hospital-administrator-edit": {
+        "header": "Edit hospital administrator profile"
+    },
+    "hospital-administrator-create": {
+        "header": "Create new hospital administrator profile"
     },
     "roles": {
         "root": "root",

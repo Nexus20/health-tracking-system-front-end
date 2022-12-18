@@ -20,3 +20,11 @@ export class AddHospitalAdministrator {
     constructor(public payload: any) {
     }
 }
+
+//Update
+export class UpdateHospitalAdministrator {
+    static readonly type = '[HospitalAdministrators] Update';
+
+    constructor(public id: string, public payload: any) {
+    }
+}

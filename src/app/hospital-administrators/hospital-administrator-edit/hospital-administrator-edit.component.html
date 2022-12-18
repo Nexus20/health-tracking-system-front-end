@@ -1,0 +1,60 @@
+<app-header></app-header>
+<main>
+    <div class="container">
+        <div class="row mb-3">
+            <h1 class="col-12">
+                {{'hospital-administrator-edit.header' | translate}}
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form [formGroup]="editHospitalAdministratorForm" (ngSubmit)="submitForm()">
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{'user.firstname' | translate}}</mat-label>
+                            <input matInput placeholder="{{'user.firstname' | translate}}" formControlName="firstname">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{'user.lastname' | translate}}</mat-label>
+                            <input matInput placeholder="{{'user.lastname' | translate}}" formControlName="lastname">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{'user.patronymic' | translate}}</mat-label>
+                            <input matInput placeholder="{{'user.patronymic' | translate}}" formControlName="patronymic">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{'user.phone' | translate}}</mat-label>
+                            <input matInput placeholder="{{'user.phone' | translate}}" formControlName="phone">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{'user.email' | translate}}</mat-label>
+                            <input matInput type="email" placeholder="{{'user.email' | translate}}" formControlName="email">
+                        </mat-form-field>
+                    </div>
+                    <div class="mb-3">
+                        <mat-form-field appearance="outline">
+                            <mat-label>{{'user.dob' | translate}}</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="birthDate">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary" [disabled]="!editHospitalAdministratorForm.valid">
+                            {{'common.apply' | translate}}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

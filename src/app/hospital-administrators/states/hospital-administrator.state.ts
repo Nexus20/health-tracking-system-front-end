@@ -5,10 +5,12 @@ import {HospitalService} from "../../hospitals/hospital.service";
 import {
     AddHospitalAdministrator,
     GetHospitalAdministratorById,
-    GetHospitalAdministrators
+    GetHospitalAdministrators, UpdateHospitalAdministrator
 } from "./hospital-administrator.actions";
 import {tap} from "rxjs";
 import {HospitalAdministratorService} from "../hospital-administrator.service";
+import {UpdateDoctor} from "../../doctors/state/doctor.actions";
+import {DoctorStateModel} from "../../doctors/state/doctor.state-model";
 
 @State<HospitalAdministratorStateModel>({
     name: 'hospitalAdministrators',
@@ -79,6 +81,23 @@ export class HospitalAdministratorState {
             ctx.patchState({
                 administrators: [...state.administrators, returnData]
             })
+        }))
+    }
+
+    @Action(UpdateHospitalAdministrator)
+    updateDataOfState(ctx: StateContext<HospitalAdministratorStateModel>, {id, payload}: UpdateHospitalAdministrator) {
+
+        return this.hospitalAdministratorService.update(id, payload).pipe(tap(returnData => {
+
+            const state = ctx.getState();
+            const administrators = [...state.administrators];
+            const index = administrators.findIndex(x => x.id == id);
+            administrators[index] = returnData;
+
+            ctx.setState({
+                ...state,
+                administrators: administrators,
+            });
         }))
     }
 }
