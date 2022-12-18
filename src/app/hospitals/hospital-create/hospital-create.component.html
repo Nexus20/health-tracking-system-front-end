@@ -5,25 +5,25 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        Add new hospital
+                        {{'hospital-add.header' | translate}}
                     </div>
                     <div class="card-body pt-4 ps-4">
                         <form [formGroup]="addHospitalForm" (ngSubmit)="addHospital()">
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Hospital name</mat-label>
-                                    <input matInput placeholder="Hospital name" formControlName="name">
+                                    <mat-label>{{'hospital-add.name' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'hospital-add.name' | translate}}" formControlName="name">
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field appearance="outline">
-                                    <mat-label>Hospital address</mat-label>
-                                    <input matInput placeholder="Hospital address" formControlName="address">
+                                    <mat-label>{{'hospital-add.address' | translate}}</mat-label>
+                                    <input matInput placeholder="{{'hospital-add.address' | translate}}" formControlName="address">
                                 </mat-form-field>
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary">
-                                    Add new hospital
+                                    {{'hospital-add.submit' | translate}}
                                 </button>
                             </div>
                         </form>

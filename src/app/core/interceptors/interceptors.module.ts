@@ -12,7 +12,7 @@ import {ErrorInterceptor} from "./error.interceptor";
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true},
-        {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+        // {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     ]
 })
 export class InterceptorsModule {

@@ -3,7 +3,7 @@ import {Login} from "../states/auth.action";
 import {Store} from "@ngxs/store";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
+import {Subject, switchMap, takeUntil} from "rxjs";
 import {GetOwnProfile} from "../../profile/state/profile.actions";
 
 @Component({
@@ -34,11 +34,13 @@ export class LoginComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.store.dispatch([new Login(this.sighInForm.value), new GetOwnProfile()])
+        this.store.dispatch(new Login(this.sighInForm.value))
             .pipe(takeUntil(this._destroy$))
             .subscribe({
                 next: () => {
-                    this.router.navigateByUrl('/');
+                    this.store.dispatch(new GetOwnProfile()).subscribe(() => {
+                        this.router.navigateByUrl('/');
+                    });
                 }, error: (error) => {
                     if (error.message) {
                         this.wrongCredentialsError = error.message;
@@ -46,6 +48,19 @@ export class LoginComponent implements OnInit, OnDestroy {
                     }
                 }
             });
+
+        // this.store.dispatch([new Login(this.sighInForm.value), new GetOwnProfile()])
+        //     .pipe(takeUntil(this._destroy$))
+        //     .subscribe({
+        //         next: () => {
+        //             this.router.navigateByUrl('/');
+        //         }, error: (error) => {
+        //             if (error.message) {
+        //                 this.wrongCredentialsError = error.message;
+        //                 this.sighInForm.controls['password'].setErrors({wrongCred: true});
+        //             }
+        //         }
+        //     });
     }
 
     ngOnDestroy(): void {

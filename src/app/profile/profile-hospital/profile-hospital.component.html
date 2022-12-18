@@ -1,16 +1,14 @@
 <ng-container *ngIf="hospitalInfo !== undefined">
     <div class="card">
         <div class="card-header">
-            Your hospital info
+            {{'profile.hospital.header' | translate}}
         </div>
         <div class="card-body">
-            <div>Name: {{hospitalInfo.name}}</div>
-            <div>Address: {{hospitalInfo.address}}</div>
-            <div>Doctors: {{hospitalInfo.doctorsCount}}</div>
-            <div>Patients: {{hospitalInfo.patientsCount}}</div>
+            <div>{{'profile.hospital.name' | translate}}: {{hospitalInfo.name}}</div>
+            <div>{{'profile.hospital.address' | translate}}: {{hospitalInfo.address}}</div>
         </div>
         <div class="card-footer d-flex gap-1">
-            <a class="btn btn-primary" [routerLink]="['/hospitals/'+hospitalId]">Details</a>
+            <a class="btn btn-primary" [routerLink]="['/hospitals/'+hospitalId]">{{'common.details' | translate}}</a>
         </div>
     </div>
 </ng-container>

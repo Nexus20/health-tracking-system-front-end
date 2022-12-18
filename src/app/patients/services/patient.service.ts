@@ -28,4 +28,8 @@ export class PatientService {
     public update = (id: string, body: FormData) => {
         return this.httpClient.put<IPatientResult>(`${this.api}patient/${id}`, body);
     }
+
+    public addDoctor(id: string, body: FormData) {
+        return this.httpClient.patch(`${this.api}patient/${id}/add-doctor`, body);
+    }
 }

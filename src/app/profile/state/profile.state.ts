@@ -34,6 +34,11 @@ export class ProfileState {
     }
 
     @Selector()
+    static selectPatientDoctorId(state: ProfileStateModel) {
+        return state.profile?.patient?.doctorId;
+    }
+
+    @Selector()
     static selectPatientHospitalId(state: ProfileStateModel) {
         return state.profile?.patient?.hospitalId;
     }

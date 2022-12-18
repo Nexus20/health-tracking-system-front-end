@@ -10,7 +10,36 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">{{ 'header.home' | translate }}</a>
+                    </li>
+                    <ng-template [ngIf]="!isUserAuthenticated">
+                        <li class="nav-item"><a class="nav-link" [routerLink]="['/users/login']">{{ 'header.login' | translate }}</a></li>
+                    </ng-template>
+                    <ng-template [ngIf]="isUserAuthenticated">
+                        <li class="nav-item">
+                            <a class="nav-link" [routerLink]="['/profile']">{{ 'header.profile' | translate }}</a>
+                        </li>
+                        <ng-template [ngIf]="isUserRoot">
+                            <a class="nav-link" [routerLink]="['/hospitals']">{{ 'header.hospitals' | translate }}</a>
+                        </ng-template>
+                        <ng-template [ngIf]="isUserHospitalAdministrator">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/doctors']">{{ 'header.doctors' | translate }}</a>
+                            </li>
+                        </ng-template>
+                        <ng-template [ngIf]="isUserHospitalAdministrator || isUserDoctor || isUserPatientCaretaker">
+                            <li class="nav-item">
+                                <a class="nav-link" [routerLink]="['/patients']">{{ 'header.patients' | translate }}</a>
+                            </li>
+                        </ng-template>
+                        <li class="nav-item">
+                            <a class="nav-link" (click)="logout()">{{ 'header.logout' | translate }}</a>
+                        </li>
+                    </ng-template>
+                    <li class="nav-item dropdown">
+                        <select class="form-control" [(ngModel)]="selectedLanguage" name="selectedLanguage" (change)="setLanguage()">
+                            <option *ngFor="let language of languages" value="{{language}}">{{ language }}</option>
+                        </select>
                     </li>
                 </ul>
             </div>

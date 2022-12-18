@@ -3,8 +3,17 @@ import {PatientStateModel} from "./patient.state-model";
 import {Injectable} from "@angular/core";
 import {tap} from "rxjs";
 import {PatientService} from "../services/patient.service";
-import {AddPatient, GetPatientById, GetPatients, GetPatientsByHospitalId, UpdatePatient} from "./patient.actions";
+import {
+    AddDoctorToPatient,
+    AddPatient,
+    GetPatientById,
+    GetPatients,
+    GetPatientsByDoctorId,
+    GetPatientsByHospitalId,
+    UpdatePatient
+} from "./patient.actions";
 import {HospitalService} from "../../hospitals/hospital.service";
+import {DoctorService} from "../../doctors/services/doctor.service";
 
 @State<PatientStateModel>({
     name: 'patients',
@@ -16,7 +25,7 @@ import {HospitalService} from "../../hospitals/hospital.service";
 @Injectable()
 export class PatientState {
 
-    constructor(private store: Store, private patientService: PatientService, private hospitalService: HospitalService) {
+    constructor(private store: Store, private patientService: PatientService, private hospitalService: HospitalService, private doctorService: DoctorService) {
     }
 
     @Selector()
@@ -40,6 +49,12 @@ export class PatientState {
     static selectPatientsByHospitalId(hospitalId: string) {
         return createSelector([PatientState], (state: PatientStateModel) => {
             return state.patients.filter(x => x.hospitalId == hospitalId);
+        });
+    }
+
+    static selectPatientsByDoctorId(doctorId: string) {
+        return createSelector([PatientState], (state: PatientStateModel) => {
+            return state.patients.filter(x => x.doctorId == doctorId);
         });
     }
 
@@ -79,6 +94,18 @@ export class PatientState {
         }))
     }
 
+    @Action(GetPatientsByDoctorId)
+    getPatientsByDoctorFromState(ctx: StateContext<PatientStateModel>, {doctorId, queryParams}: GetPatientsByDoctorId) {
+        return this.doctorService.getPatients(doctorId, queryParams).pipe(tap(returnData => {
+            const state = ctx.getState();
+
+            ctx.setState({
+                ...state,
+                patients: returnData
+            });
+        }))
+    }
+
     @Action(AddPatient)
     addPatientIntoState(ctx: StateContext<PatientStateModel>, {payload}: AddPatient) {
         return this.patientService.create(payload).pipe(tap(returnData => {
@@ -99,6 +126,23 @@ export class PatientState {
             const patients = [...state.patients];
             const index = patients.findIndex(x => x.id == id);
             patients[index] = returnData;
+
+            ctx.setState({
+                ...state,
+                patients: patients,
+            });
+        }))
+    }
+
+    @Action(AddDoctorToPatient)
+    addDoctorToPatient(ctx: StateContext<PatientStateModel>, {id, payload}: AddDoctorToPatient) {
+
+        return this.patientService.addDoctor(id, payload).pipe(tap(() => {
+
+            const state = ctx.getState();
+            const patients = [...state.patients];
+            const index = patients.findIndex(x => x.id == id);
+            patients[index].doctorId = payload['doctorId'];
 
             ctx.setState({
                 ...state,

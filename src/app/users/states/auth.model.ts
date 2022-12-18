@@ -5,4 +5,6 @@ export interface IAuthState {
     patientId?: string,
     hospitalAdministratorId?: string,
     patientCaretakerId?: string,
+    roles?: [] | string,
+    language: string
 }

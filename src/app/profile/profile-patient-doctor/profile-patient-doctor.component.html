@@ -1,0 +1,24 @@
+<div class="row mt-3">
+    <h2 class="col-12">Your doctor</h2>
+</div>
+<ng-container *ngIf="patientDoctorId !== null; else noDoctorTemplate">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body"></div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #noDoctorTemplate>
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+                It looks like you haven't been assigned to any doctor yet. Perhaps you are being transferred to another
+                doctor.
+            </div>
+        </div>
+    </div>
+</ng-template>

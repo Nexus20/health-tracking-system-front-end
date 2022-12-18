@@ -4,6 +4,7 @@ import {Store} from "@ngxs/store";
 import {Router} from "@angular/router";
 import {ProfileState} from "../../profile/state/profile.state";
 import {AddPatient} from "../state/patient.actions";
+import {AuthState} from "../../users/states/auth.state";
 
 @Component({
   selector: 'app-patient-create',
@@ -14,12 +15,20 @@ export class PatientCreateComponent implements OnInit {
 
     addPatientForm!: FormGroup;
     private hospitalId!: string;
+    private doctorId: string | null = null;
 
     constructor(private store: Store, private formBuilder: FormBuilder, private router: Router) {
     }
 
     ngOnInit(): void {
-        this.hospitalId = this.store.selectSnapshot(ProfileState.selectAdministratorHospitalId)!;
+        const adminHospitalId = this.store.selectSnapshot(ProfileState.selectAdministratorHospitalId);
+        if(adminHospitalId === undefined) {
+            this.hospitalId = this.store.selectSnapshot(ProfileState.selectDoctorHospitalId)!;
+        } else {
+            this.hospitalId = adminHospitalId;
+        }
+
+        this.doctorId = this.store.selectSnapshot(AuthState.doctorId) ?? null;
         console.log(this.hospitalId);
         this.initForm();
     }
@@ -46,7 +55,8 @@ export class PatientCreateComponent implements OnInit {
             email: new FormControl("", [Validators.required, Validators.email]),
             birthDate: new FormControl(""),
             password: new FormControl("", Validators.required),
-            hospitalId: new FormControl(this.hospitalId, Validators.required)
+            hospitalId: new FormControl(this.hospitalId, Validators.required),
+            doctorId: new FormControl(this.doctorId)
         });
     }
 }

@@ -2,9 +2,10 @@ import {Injectable} from "@angular/core";
 import {Action, Selector, State, StateContext} from "@ngxs/store";
 import {tap} from "rxjs";
 import {IAuthState} from "./auth.model";
-import {Login, Logout} from "./auth.action";
+import {Login, Logout, SetLanguage} from "./auth.action";
 import {UserService} from "../user.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {environment} from "../../../environments/environment";
 
 @State<IAuthState>({
     name: 'auth',
@@ -14,7 +15,9 @@ import {JwtHelperService} from "@auth0/angular-jwt";
         doctorId: undefined,
         patientCaretakerId: undefined,
         hospitalAdministratorId: undefined,
-        patientId: undefined
+        patientId: undefined,
+        roles: undefined,
+        language: environment.defaultLocale
     }
 })
 @Injectable()
@@ -48,6 +51,23 @@ export class AuthState {
         return state.token;
     }
 
+    @Selector()
+    static isRoot(state: IAuthState) {
+        return state.roles === "SuperAdmin";
+    }
+
+    @Selector()
+    static selectLanguage(state: IAuthState) {
+        return state.language;
+    }
+
+    @Action(SetLanguage)
+    setLanguage(ctx: StateContext<IAuthState>, {newLanguage}: SetLanguage) {
+        const state = ctx.getState();
+        state.language = newLanguage;
+        ctx.setState(state);
+    }
+
     @Action(Login)
     login({patchState}: StateContext<IAuthState>, {payload}: Login) {
         return this.authService.login(payload.email, payload.password)
@@ -62,6 +82,7 @@ export class AuthState {
                     patientCaretakerId: decodedToken["PatientCaretakerId"],
                     hospitalAdministratorId: decodedToken["HospitalAdministratorId"],
                     patientId: decodedToken["PatientId"],
+                    roles: decodedToken["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]
                 })
             }));
     }
@@ -74,7 +95,9 @@ export class AuthState {
             doctorId: undefined,
             patientCaretakerId: undefined,
             hospitalAdministratorId: undefined,
-            patientId: undefined
+            patientId: undefined,
+            roles: undefined,
+            language: environment.defaultLocale
         })
     }
 

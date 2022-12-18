@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngxs/store";
 import {Router} from "@angular/router";
 import {AuthState} from "../../users/states/auth.state";
-import {Logout} from "../../users/states/auth.action";
+import {Logout, SetLanguage} from "../../users/states/auth.action";
+import {ClearProfile} from "../../profile/state/profile.actions";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
 
@@ -16,11 +18,17 @@ export class HeaderComponent implements OnInit {
     public isUserPatient!: boolean;
     public isUserPatientCaretaker!: boolean;
     public isUserHospitalAdministrator!: boolean;
+    public isUserRoot!: boolean;
+    public languages: string[] = [];
+    public selectedLanguage!: string;
 
-    constructor(private store: Store, private router: Router) {
+    constructor(private store: Store, private router: Router, private translateService: TranslateService) {
     }
 
     ngOnInit(): void {
+        this.getAvailableLanguages();
+        this.selectedLanguage = this.store.selectSnapshot(AuthState.selectLanguage);
+        console.log(this.languages);
         const token = this.store.selectSnapshot(AuthState.token);
 
         if (!token) {
@@ -29,6 +37,7 @@ export class HeaderComponent implements OnInit {
             this.isUserPatient = false;
             this.isUserPatientCaretaker = false;
             this.isUserHospitalAdministrator = false;
+            this.isUserRoot = false;
             return;
         }
 
@@ -37,16 +46,28 @@ export class HeaderComponent implements OnInit {
         this.isUserPatient = this.store.selectSnapshot(AuthState.patientId) != undefined;
         this.isUserPatientCaretaker = this.store.selectSnapshot(AuthState.patientCaretakerId) != undefined;
         this.isUserHospitalAdministrator = this.store.selectSnapshot(AuthState.hospitalAdministratorId) != undefined;
+        this.isUserRoot = this.store.selectSnapshot(AuthState.isRoot);
     }
 
     logout() {
-        this.store.dispatch(new Logout()).subscribe(() => {
+        this.store.dispatch([new Logout(), new ClearProfile()]).subscribe(() => {
             this.isUserAuthenticated = false;
             this.isUserDoctor = false;
             this.isUserPatient = false;
             this.isUserPatientCaretaker = false;
             this.isUserHospitalAdministrator = false;
+            this.isUserRoot = false;
             this.router.navigate(['/']);
         });
+    }
+
+    setLanguage() {
+        this.translateService.use(this.selectedLanguage);
+        this.store.dispatch(new SetLanguage(this.selectedLanguage));
+        console.log("new language", this.selectedLanguage);
+    }
+
+    getAvailableLanguages() {
+        this.languages = [...this.translateService.getLangs()];
     }
 }

@@ -19,6 +19,7 @@ import {
 } from './hospital-create-administrator/hospital-create-administrator.component';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {HospitalResolver} from "./resolvers/hospital.resolver";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -72,6 +73,7 @@ import {HospitalResolver} from "./resolvers/hospital.resolver";
         MatFormFieldModule,
         MatInputModule,
         MatDatepickerModule,
+        TranslateModule,
     ],
     providers: [HospitalsResolver, HospitalResolver, HospitalAdministratorsResolver]
 })

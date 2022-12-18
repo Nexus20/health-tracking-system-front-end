@@ -7,11 +7,11 @@
         <div class="row">
             <div class="col-12 mb-3">
                 <div class="card">
-                    <div class="card-header">Your personal information</div>
+                    <div class="card-header">{{'profile.personal.header' | translate}}</div>
                     <div class="card-body">
-                        <div>Email: {{profileInfo.email}}</div>
-                        <div>Phone: {{profileInfo.phone}}</div>
-                        <div>Birth date: {{profileInfo.birthDate}}</div>
+                        <div>{{'profile.personal.email' | translate}}: {{profileInfo.email}}</div>
+                        <div>{{'profile.personal.phone' | translate}}: {{profileInfo.phone}}</div>
+                        <div>{{'profile.personal.dob' | translate}}: {{profileInfo.birthDate}}</div>
                     </div>
                     <div class="card-footer"></div>
                 </div>
@@ -21,6 +21,15 @@
                     <app-profile-hospital [hospitalId]="hospitalId"></app-profile-hospital>
                 </div>
             </ng-container>
+            <ng-container *ngIf="doctorId !== undefined">
+                <div class="col-12">
+                    <app-profile-doctor-patients [doctorId]="doctorId"></app-profile-doctor-patients>
+                </div>
+            </ng-container>
         </div>
+        <ng-container *ngIf="patientId !== undefined">
+            <app-profile-patient-doctor [patientId]="patientId"></app-profile-patient-doctor>
+            <app-profile-health-measurements [patientId]="patientId"></app-profile-health-measurements>
+        </ng-container>
     </div>
 </main>

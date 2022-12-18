@@ -4,6 +4,7 @@ import {HospitalAdministratorViewComponent} from './hospital-administrator-view/
 import {RouterModule} from "@angular/router";
 import {HospitalAdministratorResolver} from "./resolvers/hospital-administrator.resolver";
 import {SharedModule} from "../shared/shared.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {SharedModule} from "../shared/shared.module";
             }
         ]),
         SharedModule,
+        TranslateModule,
     ],
     providers: [HospitalAdministratorResolver]
 })

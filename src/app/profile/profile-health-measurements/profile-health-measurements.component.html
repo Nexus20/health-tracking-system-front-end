@@ -1,0 +1,19 @@
+<div class="row mt-3">
+    <h2 class="col-12 mb-3">
+        Your health measurements
+    </h2>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div style="display: block;">
+            <canvas baseChart
+                    [type]="'line'"
+                    [data]="lineChartData"
+                    [options]="lineChartOptions"
+                    [legend]="chartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+
+

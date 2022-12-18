@@ -2,19 +2,22 @@
 <main>
     <div class="container">
         <div class="row">
+            <h1 class="col-12">{{'hospital-view.header' | translate}}</h1>
+        </div>
+        <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         {{hospitalInfo.name}}
                     </div>
                     <div class="card-body">
-                        <div>Address: {{hospitalInfo.address}}</div>
-                        <div>Doctors: {{hospitalInfo.doctorsCount}}</div>
-                        <div>Patients: {{hospitalInfo.patientsCount}}</div>
+                        <div>{{'hospital-view.address' | translate}}: {{hospitalInfo.address}}</div>
+                        <div>{{'hospitals.doctors-count' | translate}}: {{hospitalInfo.doctorsCount}}</div>
+                        <div>{{'hospitals.patients-count' | translate}}: {{hospitalInfo.patientsCount}}</div>
                     </div>
                     <div class="card-footer d-flex gap-2">
-                        <a [routerLink]="['edit']" class="btn btn-primary">Edit</a>
-                        <a [routerLink]="['administrators']" class="btn btn-primary">Administrators</a>
+                        <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
+                        <a [routerLink]="['administrators']" class="btn btn-primary">{{'hospital-view.administrators' | translate}}</a>
                     </div>
                 </div>
             </div>

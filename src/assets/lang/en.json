@@ -1,3 +1,72 @@
 {
-    "HELLO": "hello"
+    "HELLO": "hello",
+    "WELCOME": "Welcome",
+    "common": {
+        "details": "Details",
+        "add": "Add new",
+        "edit": "Edit"
+    },
+    "header": {
+        "brand": "Health tracking system",
+        "home": "Home",
+        "login": "Login",
+        "logout": "Logout",
+        "profile": "Profile",
+        "hospitals": "Hospitals",
+        "doctors": "Doctors",
+        "patients": "Patients"
+    },
+    "profile": {
+        "personal": {
+            "header": "Your personal information",
+            "email": "Email",
+            "phone": "Phone",
+            "dob": "Birth date"
+        },
+        "hospital": {
+            "header": "Your hospital info",
+            "name": "Name",
+        "address": "Address"
+        },
+        "patients": {
+            "header": "Your patients"
+        }
+    },
+    "patient-profile": {
+        "header": "Patient profile",
+        "health-measurements": {
+            "header": "Patient's measurements",
+            "heart-rate": "Heart rate"
+        }
+    },
+    "patients": {
+        "header": "Patients"
+    },
+    "hospitals": {
+        "header": "Hospitals",
+        "doctors-count": "Doctors",
+        "patients-count": "Patients"
+    },
+    "hospital-add": {
+        "header": "Add new hospital",
+        "name": "Hospital name",
+        "address": "Hospital address",
+        "submit": "Add new hospital"
+    },
+    "hospital-view": {
+        "header": "Hospital info",
+        "address": "Address",
+        "administrators": "Administrators"
+    },
+    "hospital-administrators": {
+        "header": "Hospital administrators"
+    },
+    "hospital-administrator-view": {
+        "header": "Hospital administrator profile"
+    },
+    "roles": {
+        "root": "root",
+        "doctor": "doctor",
+        "patient": "patient"
+    }
 }

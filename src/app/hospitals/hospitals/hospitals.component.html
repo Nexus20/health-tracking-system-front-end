@@ -1,10 +1,13 @@
 <app-header></app-header>
 <main>
     <div class="container">
-        <div class="row">
-            <h2 class="col-12 mb-3">
-                Hospitals
+        <div class="row mb-3">
+            <h2 class="col-12">
+                {{'hospitals.header' | translate}}
             </h2>
+            <div class="col-12">
+                <a [routerLink]="['create']" class="btn btn-primary">{{'common.add' | translate}}</a>
+            </div>
         </div>
         <div class="row">
             <ng-container *ngFor="let hospital of hospitals">
@@ -14,12 +17,12 @@
                             {{hospital.name}}
                         </div>
                         <div class="card-body">
-                            <div>Address: {{hospital.address}}</div>
-                            <div>Doctors: {{hospital.doctorsCount}}</div>
-                            <div>Patients: {{hospital.patientsCount}}</div>
+                            <div>{{'profile.hospital.address' | translate}}: {{hospital.address}}</div>
+                            <div>{{'hospitals.doctors-count' | translate}}: {{hospital.doctorsCount}}</div>
+                            <div>{{'hospitals.patients-count' | translate}}: {{hospital.patientsCount}}</div>
                         </div>
                         <div class="card-footer">
-                            <a [routerLink]="[hospital.id]" class="btn btn-primary">Details</a>
+                            <a [routerLink]="[hospital.id]" class="btn btn-primary">{{'common.details' | translate}}</a>
                         </div>
                     </div>
                 </div>

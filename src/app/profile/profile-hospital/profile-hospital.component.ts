@@ -13,7 +13,6 @@ import {IHospitalResult} from "../../hospitals/models/hospital.result";
 export class ProfileHospitalComponent implements OnInit {
 
     @Input() hospitalId!: string;
-    // @Input() hospitalInfo?: IHospitalResult;
     hospitalInfo!: IHospitalResult;
 
     constructor(private store: Store) {

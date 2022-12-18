@@ -1,3 +1,72 @@
 {
-    "HELLO": "Привіт"
+    "HELLO": "Привіт",
+    "WELCOME": "Вітаємо",
+    "common": {
+        "details": "Детальніше",
+        "add": "Додати",
+        "edit": "Редагувати"
+    },
+    "header": {
+        "brand": "Health tracking system",
+        "home": "На головну",
+        "login": "Вхід",
+        "logout": "Вихід",
+        "profile": "Мій профіль",
+        "hospitals": "Мед. заклади",
+        "doctors": "Лікарі",
+        "patients": "Пацієнти"
+    },
+    "profile": {
+        "personal": {
+            "header": "Ваші особісті дані",
+            "email": "Email",
+            "phone": "Телефон",
+            "dob": "Дата народження"
+        },
+        "hospital": {
+            "header": "Ваш медичний заклад",
+            "name": "Назва",
+            "address": "Адреса"
+        },
+        "patients": {
+            "header": "Ваші пацієнти"
+        }
+    },
+    "patient-profile": {
+        "header": "Профіль пацієнта",
+        "health-measurements": {
+            "header": "Показники здоров'я",
+            "heart-rate": "ЧСС"
+        }
+    },
+    "patients": {
+        "header": "Пацієнти"
+    },
+    "hospitals": {
+        "header": "Медічні заклади",
+        "doctors-count": "Лікарів",
+        "patients-count": "Пацієнтів"
+    },
+    "hospital-add": {
+        "header": "Додати новий медичний заклад",
+        "name": "Назва мед. закладу",
+        "address": "Адреса мед. закладу",
+        "submit": "Додати новий мед. заклад"
+    },
+    "hospital-view": {
+        "header": "Інформація про медичний заклад",
+        "address": "Адреса",
+        "administrators": "Адміністрація"
+    },
+    "hospital-administrators": {
+        "header": "Адміністрація медичного закладу"
+    },
+    "hospital-administrator-view": {
+        "header": "Профіль адміністратора медичного закладу"
+    },
+    "roles": {
+        "root": "root",
+        "doctor": "лікар",
+        "patient": "пацієнт"
+    }
 }

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <h2 class="col-12 mb-3">
-                Patient profile
+                {{'patient-profile.header' | translate}}
             </h2>
         </div>
         <div class="row">
@@ -13,15 +13,75 @@
                         {{patient.firstName}} {{patient.lastName}}
                     </div>
                     <div class="card-body">
-                        <div>Email: {{patient.email}}</div>
-                        <div>Phone: {{patient.phone}}</div>
-                        <div>Birth date: {{patient.birthDate}}</div>
+                        <div>{{'profile.personal.email' | translate}}: {{patient.email}}</div>
+                        <div>{{'profile.personal.phone' | translate}}: {{patient.phone}}</div>
+                        <div>{{'profile.personal.dob' | translate}}: {{patient.birthDate}}</div>
                     </div>
                     <div class="card-footer">
-                        <a [routerLink]="['edit']" class="btn btn-primary">Edit</a>
+                        <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
                     </div>
                 </div>
             </div>
         </div>
+        <ng-container *ngIf="isUserHospitalAdmin">
+            <div class="row mt-3">
+                <h2 class="col-12 mb-3">
+                    Patient's doctor
+                </h2>
+            </div>
+            <ng-container *ngIf="patient.doctorId !== null; else noDoctorTemplate">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <ng-container *ngIf="patientDoctor !== undefined">
+                                <div class="card-header">{{patientDoctor.firstName}} {{patientDoctor.lastName}}</div>
+                                <div class="card-body">
+                                    <div>Email: {{patientDoctor.email}}</div>
+                                    <div>Phone: {{patientDoctor.phone}}</div>
+                                    <div>Birth date: {{patientDoctor.birthDate}}</div>
+                                </div>
+                                <div class="card-footer">
+                                    <a [routerLink]="['add-doctor']" class="btn btn-primary">Change doctor</a>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #noDoctorTemplate>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div class="mb-3">This patient hasn't been assigned to any doctor yet.</div>
+                            <a [routerLink]="['add-doctor']" class="btn btn-primary">Add this patient to doctor</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+        <ng-container *ngIf="isUserHospitalDoctor">
+            <div class="row mt-3">
+                <h2 class="col-12 mb-3">
+                    {{'patient-profile.health-measurements.header' | translate}}
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="alert alert-info">
+                        {{'patient-profile.health-measurements.heart-rate' | translate}}: {{currentHeartRate}}
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div style="display: block;">
+                        <canvas baseChart
+                                [type]="'line'"
+                                [data]="lineChartData"
+                                [options]="lineChartOptions"
+                                [legend]="chartLegend">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </main>

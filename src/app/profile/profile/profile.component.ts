@@ -13,21 +13,38 @@ export class ProfileComponent implements OnInit {
 
     profileInfo!: IProfileResult;
     hospitalId?: string;
-    isHospitalAdmin: boolean = false;
-    // hospitalInfo?: IHospitalResult;
+    doctorId?: string;
+    patientId?: string;
+    isUserHospitalAdmin: boolean = false;
+    isUserDoctor: boolean = false;
+    isUserPatient: boolean = false;
 
     constructor(private store: Store) {
     }
 
+    // https://localhost:7088/health-measurements
+
     ngOnInit(): void {
 
         this.profileInfo = this.store.selectSnapshot(ProfileState.selectProfile)!;
-        this.isHospitalAdmin = this.store.selectSnapshot(AuthState.hospitalAdministratorId) !== undefined;
+        this.isUserHospitalAdmin = this.store.selectSnapshot(AuthState.hospitalAdministratorId) !== undefined;
 
-        if(this.isHospitalAdmin) {
+        if (this.isUserHospitalAdmin) {
             this.hospitalId = this.store.selectSnapshot(ProfileState.selectAdministratorHospitalId);
+        }
 
+        this.isUserDoctor = this.store.selectSnapshot(AuthState.doctorId) !== undefined;
 
+        if(this.isUserDoctor) {
+            this.hospitalId = this.store.selectSnapshot(ProfileState.selectDoctorHospitalId);
+            this.doctorId = this.store.selectSnapshot(AuthState.doctorId);
+        }
+
+        const patientId = this.store.selectSnapshot(AuthState.patientId);
+        if(patientId !== undefined) {
+            this.isUserPatient = true;
+            this.patientId = patientId;
+            this.hospitalId = this.store.selectSnapshot(ProfileState.selectPatientHospitalId);
         }
     }
 }

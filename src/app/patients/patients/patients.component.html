@@ -3,10 +3,10 @@
     <div class="container">
         <div class="row">
             <h2 class="col-12 mb-3">
-                Patients
+                {{'patients.header' | translate}}
             </h2>
             <div class="col-12 mb-3">
-                <a [routerLink]="['create']" class="btn btn-primary">Add patient</a>
+                <a [routerLink]="['create']" class="btn btn-primary">{{'common.add' | translate}}</a>
             </div>
         </div>
         <div class="row">
@@ -17,12 +17,12 @@
                             {{patient.firstName}} {{patient.lastName}}
                         </div>
                         <div class="card-body">
-                            <div>Email: {{patient.email}}</div>
-                            <div>Phone: {{patient.phone}}</div>
-                            <div>Birth date: {{patient.birthDate}}</div>
+                            <div>{{'profile.personal.email' | translate}}: {{patient.email}}</div>
+                            <div>{{'profile.personal.phone' | translate}}: {{patient.phone}}</div>
+                            <div>{{'profile.personal.dob' | translate}}: {{patient.birthDate}}</div>
                         </div>
                         <div class="card-footer">
-                            <a [routerLink]="[patient.id]" class="btn btn-primary">Details</a>
+                            <a [routerLink]="[patient.id]" class="btn btn-primary">{{'common.details' | translate}}</a>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,46 @@
+<app-header></app-header>
+<main>
+    <div class="container">
+        <div class="row">
+            <h1 class="col-12">Add doctor to patient</h1>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Patient info</div>
+                    <div class="card-body">
+                        <div>Full name: {{patient.firstName}} {{patient.lastName}}</div>
+                        <div>Email: {{patient.email}}</div>
+                        <div>Phone: {{patient.phone}}</div>
+                        <div>Birth date: {{patient.birthDate}}</div>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form [formGroup]="addDoctorForm" (ngSubmit)="submitForm()">
+                    <div class="card">
+                        <div class="card-header">Select doctor</div>
+                        <div class="card-body">
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>Doctors</mat-label>
+                                <mat-select formControlName="doctorId">
+                                    <mat-option *ngFor="let doctor of doctors"
+                                                [value]="doctor.id">{{doctor.firstName}} {{doctor.lastName}}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary" [disabled]="!addDoctorForm.valid">
+                                Add doctor to patient
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

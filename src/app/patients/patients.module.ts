@@ -12,6 +12,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {PatientsResolver} from "./resolvers/patients.resolver";
 import {PatientResolver} from "./resolvers/patient.resolver";
+import {NgChartsModule} from "ng2-charts";
+import { PatientAddDoctorComponent } from './patient-add-doctor/patient-add-doctor.component';
+import {DoctorsResolver} from "../doctors/resolvers/doctors.resolver";
+import {MatSelectModule} from "@angular/material/select";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -19,7 +24,8 @@ import {PatientResolver} from "./resolvers/patient.resolver";
         PatientsComponent,
         PatientViewComponent,
         PatientCreateComponent,
-        PatientEditComponent
+        PatientEditComponent,
+        PatientAddDoctorComponent
     ],
     imports: [
         CommonModule,
@@ -48,15 +54,26 @@ import {PatientResolver} from "./resolvers/patient.resolver";
                 resolve: {
                     patient: PatientResolver
                 }
+            },
+            {
+                path: ':id/add-doctor',
+                component: PatientAddDoctorComponent,
+                resolve: {
+                    patient: PatientResolver,
+                    doctors: DoctorsResolver
+                }
             }
         ]),
         SharedModule,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        NgChartsModule,
+        MatSelectModule,
+        TranslateModule
     ],
-    providers: [PatientsResolver, PatientResolver]
+    providers: [PatientsResolver, PatientResolver, DoctorsResolver]
 })
 export class PatientsModule {
 }

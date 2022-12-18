@@ -28,4 +28,8 @@ export class DoctorService {
     public update = (id: string, body: FormData) => {
         return this.httpClient.put<IDoctorResult>(`${this.api}doctor/${id}`, body);
     }
+
+    public getPatients(doctorId: string, queryParams?: {}) {
+        return this.httpClient.get<IDoctorResult[]>(`${this.api}doctor/${doctorId}/patients`, {params: queryParams});
+    }
 }

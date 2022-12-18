@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <h2 class="col-12 mb-3">
-                Hospital administrator profile
+                {{'hospital-administrator-view.header' | translate}}
             </h2>
         </div>
         <div class="row">
@@ -13,13 +13,12 @@
                         {{hospitalAdministratorInfo.firstName}} {{hospitalAdministratorInfo.lastName}}
                     </div>
                     <div class="card-body">
-                        <div>Email: {{hospitalAdministratorInfo.email}}</div>
-                        <div>Phone: {{hospitalAdministratorInfo.phone}}</div>
-                        <div>Birth date: {{hospitalAdministratorInfo.birthDate}}</div>
+                        <div>{{'profile.personal.email' | translate}}: {{hospitalAdministratorInfo.email}}</div>
+                        <div>{{'profile.personal.phone' | translate}}: {{hospitalAdministratorInfo.phone}}</div>
+                        <div>{{'profile.personal.dob' | translate}}: {{hospitalAdministratorInfo.birthDate}}</div>
                     </div>
                     <div class="card-footer">
-<!--                        <a [routerLink]="['/hospital-administrators/' + hospitalAdministratorInfo.id]"-->
-<!--                           class="btn btn-primary">Details</a>-->
+                        <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
                     </div>
                 </div>
             </div>

@@ -25,6 +25,8 @@ import {DoctorService} from "./doctors/services/doctor.service";
 import {DoctorState} from "./doctors/state/doctor.state";
 import {PatientState} from "./patients/state/patient.state";
 import {PatientService} from "./patients/services/patient.service";
+import { NgChartsModule } from 'ng2-charts';
+
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
     return new TranslateHttpLoader(http, './assets/lang/', '.json');
@@ -39,6 +41,7 @@ export function tokenGetter() {
         AppComponent,
     ],
     imports: [
+        NgChartsModule,
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
@@ -49,7 +52,7 @@ export function tokenGetter() {
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient],
             },
-            useDefaultLang: false,
+            useDefaultLang: true,
             defaultLanguage: 'en',
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
         }),
