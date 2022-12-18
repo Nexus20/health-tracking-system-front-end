@@ -5,12 +5,11 @@ import {HospitalService} from "../../hospitals/hospital.service";
 import {
     AddHospitalAdministrator,
     GetHospitalAdministratorById,
-    GetHospitalAdministrators, UpdateHospitalAdministrator
+    GetHospitalAdministrators,
+    UpdateHospitalAdministrator
 } from "./hospital-administrator.actions";
 import {tap} from "rxjs";
 import {HospitalAdministratorService} from "../hospital-administrator.service";
-import {UpdateDoctor} from "../../doctors/state/doctor.actions";
-import {DoctorStateModel} from "../../doctors/state/doctor.state-model";
 
 @State<HospitalAdministratorStateModel>({
     name: 'hospitalAdministrators',

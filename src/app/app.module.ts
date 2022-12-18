@@ -25,7 +25,7 @@ import {DoctorService} from "./doctors/services/doctor.service";
 import {DoctorState} from "./doctors/state/doctor.state";
 import {PatientState} from "./patients/state/patient.state";
 import {PatientService} from "./patients/services/patient.service";
-import { NgChartsModule } from 'ng2-charts';
+import {NgChartsModule} from 'ng2-charts';
 
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {

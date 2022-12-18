@@ -13,7 +13,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {PatientsResolver} from "./resolvers/patients.resolver";
 import {PatientResolver} from "./resolvers/patient.resolver";
 import {NgChartsModule} from "ng2-charts";
-import { PatientAddDoctorComponent } from './patient-add-doctor/patient-add-doctor.component';
+import {PatientAddDoctorComponent} from './patient-add-doctor/patient-add-doctor.component';
 import {DoctorsResolver} from "../doctors/resolvers/doctors.resolver";
 import {MatSelectModule} from "@angular/material/select";
 import {TranslateModule} from "@ngx-translate/core";

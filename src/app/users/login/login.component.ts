@@ -3,7 +3,7 @@ import {Login} from "../states/auth.action";
 import {Store} from "@ngxs/store";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Subject, switchMap, takeUntil} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {GetOwnProfile} from "../../profile/state/profile.actions";
 
 @Component({

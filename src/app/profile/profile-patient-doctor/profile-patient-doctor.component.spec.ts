@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ProfilePatientDoctorComponent } from './profile-patient-doctor.component';
+import {ProfilePatientDoctorComponent} from './profile-patient-doctor.component';
 
 describe('ProfilePatientDoctorComponent', () => {
   let component: ProfilePatientDoctorComponent;
