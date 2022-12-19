@@ -27,7 +27,7 @@
                                 <a class="nav-link" [routerLink]="['/doctors']">{{ 'header.doctors' | translate }}</a>
                             </li>
                         </ng-template>
-                        <ng-template [ngIf]="isUserHospitalAdministrator || isUserDoctor || isUserPatientCaretaker">
+                        <ng-template [ngIf]="isUserHospitalAdministrator || isUserDoctor">
                             <li class="nav-item">
                                 <a class="nav-link" [routerLink]="['/patients']">{{ 'header.patients' | translate }}</a>
                             </li>

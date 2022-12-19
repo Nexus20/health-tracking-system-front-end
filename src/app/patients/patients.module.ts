@@ -17,6 +17,7 @@ import {PatientAddDoctorComponent} from './patient-add-doctor/patient-add-doctor
 import {DoctorsResolver} from "../doctors/resolvers/doctors.resolver";
 import {MatSelectModule} from "@angular/material/select";
 import {TranslateModule} from "@ngx-translate/core";
+import {PatientAddCaretakerComponent} from './patient-add-caretaker/patient-add-caretaker.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {TranslateModule} from "@ngx-translate/core";
         PatientViewComponent,
         PatientCreateComponent,
         PatientEditComponent,
-        PatientAddDoctorComponent
+        PatientAddDoctorComponent,
+        PatientAddCaretakerComponent
     ],
     imports: [
         CommonModule,
@@ -61,6 +63,13 @@ import {TranslateModule} from "@ngx-translate/core";
                 resolve: {
                     patient: PatientResolver,
                     doctors: DoctorsResolver
+                }
+            },
+            {
+                path: ':id/add-caretaker',
+                component: PatientAddCaretakerComponent,
+                resolve: {
+                    patient: PatientResolver,
                 }
             }
         ]),

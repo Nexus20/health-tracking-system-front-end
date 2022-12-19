@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {EcgPointModel} from "../../core/models/EcgPointModel";
+import {EcgPointModel, HeartRateModel} from "../../core/models/EcgPointModel";
 import {BaseChartDirective} from "ng2-charts";
 import {ChartConfiguration, ChartOptions} from "chart.js";
 import {environment} from "../../../environments/environment";
@@ -17,6 +17,7 @@ export class ProfileHealthMeasurementsComponent implements OnInit {
     @Input() patientId!: string;
 
     public ecgData: EcgPointModel[] = [];
+    public currentHeartRate: number = 0;
     chartLegend: boolean = true;
 
     @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
@@ -59,8 +60,12 @@ export class ProfileHealthMeasurementsComponent implements OnInit {
             console.log("Connected to signalR client");
             this.signalRConnection = data;
 
-            this.startHttpRequest();
+            this.startHeartRateHttpRequest();
+            this.signalRConnection.on<HeartRateModel[]>('TransferHeartRateData').subscribe(data => {
+                this.currentHeartRate = data[0].heartRate;
+            });
 
+            this.startEcgHttpRequest();
             this.signalRConnection.on<EcgPointModel[]>('TransferEcgData').subscribe({
                 next: data => {
                     const pointModel: EcgPointModel = {
@@ -87,8 +92,15 @@ export class ProfileHealthMeasurementsComponent implements OnInit {
         });
     }
 
-    private startHttpRequest = () => {
+    private startEcgHttpRequest = () => {
         this.httpClient.get(`${this.api}chart/getEcg`)
+            .subscribe(res => {
+                console.log(res);
+            })
+    }
+
+    private startHeartRateHttpRequest = () => {
+        this.httpClient.get(`${this.api}chart/GetHeartRate`)
             .subscribe(res => {
                 console.log(res);
             })

@@ -12,6 +12,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {DoctorResolver} from "./resolvers/doctor.resolver";
 import {DoctorEditComponent} from './doctor-edit/doctor-edit.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import {DoctorEditComponent} from './doctor-edit/doctor-edit.component';
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInputModule,
-        MatDatepickerModule
+        MatDatepickerModule,
+        TranslateModule
     ],
     providers: [DoctorsResolver, DoctorResolver]
 })

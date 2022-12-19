@@ -1,14 +1,22 @@
 <div class="row mt-3">
-    <h2 class="col-12">Your doctor</h2>
+    <h2 class="col-12">
+        {{'profile.patient-doctor.header' | translate}}
+    </h2>
 </div>
 <ng-container *ngIf="patientDoctorId !== null; else noDoctorTemplate">
     <div class="row">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header"></div>
-                <div class="card-body"></div>
-                <div class="card-footer"></div>
-            </div>
+            <ng-container *ngIf="patientDoctorInfo !== undefined">
+                <div class="card">
+                    <div class="card-header">{{patientDoctorInfo.firstName}} {{patientDoctorInfo.lastName}}</div>
+                    <div class="card-body">
+                        <div>{{'profile.personal.email' | translate}}: {{patientDoctorInfo.email}}</div>
+                        <div>{{'profile.personal.phone' | translate}}: {{patientDoctorInfo.phone}}</div>
+                        <div>{{'profile.personal.dob' | translate}}: {{patientDoctorInfo.birthDate}}</div>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </ng-container>
         </div>
     </div>
 </ng-container>
@@ -16,8 +24,7 @@
     <div class="row">
         <div class="col-12">
             <div class="alert alert-warning" role="alert">
-                It looks like you haven't been assigned to any doctor yet. Perhaps you are being transferred to another
-                doctor.
+                {{'profile.patient-doctor.no-doctor-alert' | translate}}
             </div>
         </div>
     </div>

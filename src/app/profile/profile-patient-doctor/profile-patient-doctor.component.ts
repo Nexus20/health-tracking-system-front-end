@@ -26,6 +26,7 @@ export class ProfilePatientDoctorComponent implements OnInit {
             this.store.dispatch(new GetDoctorById(this.patientDoctorId)).pipe(
                 map(() => this.store.selectSnapshot(DoctorState.selectDoctorById(this.patientDoctorId)))
             ).subscribe(data => {
+                this.patientDoctorInfo = data;
                 console.log("DOCTOR", data);
             });
         }

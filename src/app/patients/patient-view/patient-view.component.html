@@ -18,15 +18,17 @@
                         <div>{{'profile.personal.dob' | translate}}: {{patient.birthDate}}</div>
                     </div>
                     <div class="card-footer">
-                        <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
+                        <ng-container *ngIf="isUserHospitalDoctor || isUserHospitalAdmin">
+                            <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
+                        </ng-container>
                     </div>
                 </div>
             </div>
         </div>
-        <ng-container *ngIf="isUserHospitalAdmin">
+        <ng-container *ngIf="isUserHospitalAdmin || isUserPatientCaretaker">
             <div class="row mt-3">
                 <h2 class="col-12 mb-3">
-                    Patient's doctor
+                    {{'patient-profile.patient-doctor.header' | translate}}
                 </h2>
             </div>
             <ng-container *ngIf="patient.doctorId !== null; else noDoctorTemplate">
@@ -36,12 +38,17 @@
                             <ng-container *ngIf="patientDoctor !== undefined">
                                 <div class="card-header">{{patientDoctor.firstName}} {{patientDoctor.lastName}}</div>
                                 <div class="card-body">
-                                    <div>Email: {{patientDoctor.email}}</div>
-                                    <div>Phone: {{patientDoctor.phone}}</div>
-                                    <div>Birth date: {{patientDoctor.birthDate}}</div>
+                                    <div>{{'user.email' | translate}}: {{patientDoctor.email}}</div>
+                                    <div>{{'user.phone' | translate}}: {{patientDoctor.phone}}</div>
+                                    <div>{{'user.dob' | translate}}: {{patientDoctor.birthDate}}</div>
                                 </div>
-                                <div class="card-footer">
-                                    <a [routerLink]="['add-doctor']" class="btn btn-primary">Change doctor</a>
+                                <div class="card-footer d-flex gap-1">
+                                    <ng-container *ngIf="isUserHospitalAdmin">
+                                        <a [routerLink]="['add-doctor']"
+                                           class="btn btn-primary">{{'patient-profile.patient-doctor.change-doctor' | translate}}</a>
+                                        <a [routerLink]="['/doctors/' + patientDoctor.id]"
+                                           class="btn btn-primary">{{'common.details' | translate}}</a>
+                                    </ng-container>
                                 </div>
                             </ng-container>
                         </div>
@@ -52,14 +59,57 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="alert alert-warning" role="alert">
-                            <div class="mb-3">This patient hasn't been assigned to any doctor yet.</div>
-                            <a [routerLink]="['add-doctor']" class="btn btn-primary">Add this patient to doctor</a>
+                            <div class="mb-3">{{'patient-profile.patient-doctor.no-doctor-warning' | translate}}</div>
+                            <a [routerLink]="['add-doctor']"
+                               class="btn btn-primary">{{'patient-profile.patient-doctor.add-to-doctor' | translate}}</a>
                         </div>
                     </div>
                 </div>
             </ng-template>
         </ng-container>
-        <ng-container *ngIf="isUserHospitalDoctor">
+
+        <ng-container *ngIf="isUserHospitalAdmin || isUserHospitalDoctor">
+            <div class="row mt-3">
+                <h2 class="col-12 mb-3">
+                    {{'patient-profile.patient-caretaker.header' | translate}}
+                </h2>
+            </div>
+            <ng-container *ngIf="patient.patientCaretakerId !== null; else noCaretakerTemplate">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <ng-container *ngIf="patientCaretaker !== undefined">
+                                <div
+                                    class="card-header">{{patientCaretaker.firstName}} {{patientCaretaker.lastName}}</div>
+                                <div class="card-body">
+                                    <div>{{'user.email' | translate}}: {{patientCaretaker.email}}</div>
+                                    <div>{{'user.phone' | translate}}: {{patientCaretaker.phone}}</div>
+                                    <div>{{'user.dob' | translate}}: {{patientCaretaker.birthDate}}</div>
+                                </div>
+                                <div class="card-footer d-flex gap-1">
+                                    <a [routerLink]="['/patient-caretakers/' + patientCaretaker.id + '/edit']"
+                                       class="btn btn-primary">{{'common.edit' | translate}}</a>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-template #noCaretakerTemplate>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            <div
+                                class="mb-3">{{'patient-profile.patient-caretaker.no-caretaker-warning' | translate}}</div>
+                            <a [routerLink]="['add-caretaker']"
+                               class="btn btn-primary">{{'patient-profile.patient-caretaker.add-caretaker' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </ng-container>
+
+        <ng-container *ngIf="isUserHospitalDoctor || isUserPatientCaretaker">
             <div class="row mt-3">
                 <h2 class="col-12 mb-3">
                     {{'patient-profile.health-measurements.header' | translate}}

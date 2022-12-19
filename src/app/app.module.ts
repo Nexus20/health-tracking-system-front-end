@@ -26,6 +26,8 @@ import {DoctorState} from "./doctors/state/doctor.state";
 import {PatientState} from "./patients/state/patient.state";
 import {PatientService} from "./patients/services/patient.service";
 import {NgChartsModule} from 'ng2-charts';
+import {PatientCaretakerService} from "./patient-caretakers/services/patient-caretaker.service";
+import {PatientCaretakerState} from "./patient-caretakers/state/patient-caretaker.state";
 
 
 export function HttpLoaderFactory(http: HttpClient): TranslateLoader {
@@ -56,7 +58,7 @@ export function tokenGetter() {
             defaultLanguage: 'en',
             missingTranslationHandler: {provide: MissingTranslationHandler, useClass: MissingTranslationService},
         }),
-        NgxsModule.forRoot([AuthState, HospitalState, HospitalAdministratorState, ProfileState, DoctorState, PatientState]),
+        NgxsModule.forRoot([AuthState, HospitalState, HospitalAdministratorState, ProfileState, DoctorState, PatientState, PatientCaretakerState]),
         NgxsStoragePluginModule.forRoot({
             key: ['auth', 'profile'],
         }),
@@ -71,7 +73,7 @@ export function tokenGetter() {
         InterceptorsModule,
         MatNativeDateModule
     ],
-    providers: [HospitalsResolver, UserService, HospitalService, DoctorService, PatientService],
+    providers: [HospitalsResolver, UserService, HospitalService, DoctorService, PatientService, PatientCaretakerService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

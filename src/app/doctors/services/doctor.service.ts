@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IDoctorResult} from "../../hospitals/models/IDoctorResult";
+import {IPatientResult} from "../../hospitals/models/IPatientResult";
 
 @Injectable({
     providedIn: 'root'
@@ -30,6 +31,6 @@ export class DoctorService {
     }
 
     public getPatients(doctorId: string, queryParams?: {}) {
-        return this.httpClient.get<IDoctorResult[]>(`${this.api}doctor/${doctorId}/patients`, {params: queryParams});
+        return this.httpClient.get<IPatientResult[]>(`${this.api}doctor/${doctorId}/patients`, {params: queryParams});
     }
 }

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <h2 class="col-12 mb-3">
-                Doctor profile
+                {{'doctor-view.header' | translate}}
             </h2>
         </div>
         <div class="row">
@@ -13,12 +13,12 @@
                         {{doctor.firstName}} {{doctor.lastName}}
                     </div>
                     <div class="card-body">
-                        <div>Email: {{doctor.email}}</div>
-                        <div>Phone: {{doctor.phone}}</div>
-                        <div>Birth date: {{doctor.birthDate}}</div>
+                        <div>{{'user.email' | translate}}: {{doctor.email}}</div>
+                        <div>{{'user.phone' | translate}}: {{doctor.phone}}</div>
+                        <div>{{'user.dob' | translate}}: {{doctor.birthDate}}</div>
                     </div>
                     <div class="card-footer">
-                        <a [routerLink]="['edit']" class="btn btn-primary">Edit</a>
+                        <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
                     </div>
                 </div>
             </div>

@@ -1,18 +1,17 @@
 <app-header></app-header>
 <main>
     <div class="container">
-        <div class="row mb-3">
+        <div class="row">
             <h1 class="col-12">
-                {{'doctor-edit.header' | translate}}
+                {{'patient-profile.patient-caretaker.add-caretaker' | translate}}
             </h1>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
-                    </div>
+                    <div class="card-header"></div>
                     <div class="card-body pt-4 ps-4">
-                        <form [formGroup]="editDoctorForm" (ngSubmit)="submitForm()">
+                        <form [formGroup]="addCaretakerForm" (ngSubmit)="submitForm()">
                             <div>
                                 <mat-form-field appearance="outline">
                                     <mat-label>{{'user.firstname' | translate}}</mat-label>
@@ -43,6 +42,12 @@
                                     <input matInput type="email" placeholder="{{'user.email' | translate}}" formControlName="email">
                                 </mat-form-field>
                             </div>
+                            <div>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>{{'user.password' | translate}}</mat-label>
+                                    <input matInput type="password" placeholder="{{'user.password' | translate}}" formControlName="password">
+                                </mat-form-field>
+                            </div>
                             <div class="mb-3">
                                 <mat-form-field appearance="outline">
                                     <mat-label>{{'user.dob' | translate}}</mat-label>
@@ -53,12 +58,13 @@
                                 </mat-form-field>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-primary" [disabled]="!editDoctorForm.valid">
-                                    {{'common.apply' | translate}}
+                                <button type="submit" class="btn btn-primary" [disabled]="!addCaretakerForm.valid">
+                                    {{'common.add' | translate}}
                                 </button>
                             </div>
                         </form>
                     </div>
+                    <div class="card-footer"></div>
                 </div>
             </div>
         </div>

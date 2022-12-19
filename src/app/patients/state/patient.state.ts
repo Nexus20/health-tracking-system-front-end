@@ -8,12 +8,14 @@ import {
     AddPatient,
     GetPatientById,
     GetPatients,
+    GetPatientsByCaretakerId,
     GetPatientsByDoctorId,
     GetPatientsByHospitalId,
     UpdatePatient
 } from "./patient.actions";
 import {HospitalService} from "../../hospitals/hospital.service";
 import {DoctorService} from "../../doctors/services/doctor.service";
+import {PatientCaretakerService} from "../../patient-caretakers/services/patient-caretaker.service";
 
 @State<PatientStateModel>({
     name: 'patients',
@@ -25,7 +27,7 @@ import {DoctorService} from "../../doctors/services/doctor.service";
 @Injectable()
 export class PatientState {
 
-    constructor(private store: Store, private patientService: PatientService, private hospitalService: HospitalService, private doctorService: DoctorService) {
+    constructor(private store: Store, private patientService: PatientService, private hospitalService: HospitalService, private doctorService: DoctorService, private patientCaretakerService: PatientCaretakerService) {
     }
 
     @Selector()
@@ -55,6 +57,12 @@ export class PatientState {
     static selectPatientsByDoctorId(doctorId: string) {
         return createSelector([PatientState], (state: PatientStateModel) => {
             return state.patients.filter(x => x.doctorId == doctorId);
+        });
+    }
+
+    static selectPatientsByCaretakerId(caretakerId: string) {
+        return createSelector([PatientState], (state: PatientStateModel) => {
+            return state.patients.filter(x => x.patientCaretakerId == caretakerId);
         });
     }
 
@@ -97,6 +105,18 @@ export class PatientState {
     @Action(GetPatientsByDoctorId)
     getPatientsByDoctorFromState(ctx: StateContext<PatientStateModel>, {doctorId, queryParams}: GetPatientsByDoctorId) {
         return this.doctorService.getPatients(doctorId, queryParams).pipe(tap(returnData => {
+            const state = ctx.getState();
+
+            ctx.setState({
+                ...state,
+                patients: returnData
+            });
+        }))
+    }
+
+    @Action(GetPatientsByCaretakerId)
+    getPatientsByCaretakerFromState(ctx: StateContext<PatientStateModel>, {caretakerId, queryParams}: GetPatientsByCaretakerId) {
+        return this.patientCaretakerService.getPatients(caretakerId, queryParams).pipe(tap(returnData => {
             const state = ctx.getState();
 
             ctx.setState({

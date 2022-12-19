@@ -9,6 +9,12 @@ import {ProfileDoctorPatientsComponent} from './profile-doctor-patients/profile-
 import {ProfileHealthMeasurementsComponent} from './profile-health-measurements/profile-health-measurements.component';
 import {ProfilePatientDoctorComponent} from './profile-patient-doctor/profile-patient-doctor.component';
 import {TranslateModule} from "@ngx-translate/core";
+import {
+    ProfilePatientPatientCaretakerComponent
+} from './profile-patient-patient-caretaker/profile-patient-patient-caretaker.component';
+import {
+    ProfilePatientCaretakerPatientsComponent
+} from './profile-patient-caretaker-patients/profile-patient-caretaker-patients.component';
 
 
 @NgModule({
@@ -17,7 +23,9 @@ import {TranslateModule} from "@ngx-translate/core";
         ProfileHospitalComponent,
         ProfileDoctorPatientsComponent,
         ProfileHealthMeasurementsComponent,
-        ProfilePatientDoctorComponent
+        ProfilePatientDoctorComponent,
+        ProfilePatientPatientCaretakerComponent,
+        ProfilePatientCaretakerPatientsComponent
     ],
     imports: [
         CommonModule,

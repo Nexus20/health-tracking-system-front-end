@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngxs/store";
-import {AuthState} from "../../users/states/auth.state";
+import {ProfileState} from "../../profile/state/profile.state";
 
 @Component({
   selector: 'app-home',
@@ -9,10 +9,17 @@ import {AuthState} from "../../users/states/auth.state";
 })
 export class HomeComponent implements OnInit {
 
+    public userFullName!: string;
+
     constructor(private store: Store) {
     }
 
     ngOnInit(): void {
-        console.log(this.store.selectSnapshot(AuthState.isRoot));
+        const userProfile = this.store.selectSnapshot(ProfileState.selectProfile);
+        if(userProfile === undefined) {
+            this.userFullName = "Guest"
+        } else {
+            this.userFullName = `${userProfile?.lastName} ${userProfile?.firstName} ${userProfile?.patronymic}`;
+        }
     }
 }

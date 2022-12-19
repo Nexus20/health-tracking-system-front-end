@@ -1,9 +1,14 @@
 <div class="row mt-3">
     <h2 class="col-12 mb-3">
-        Your health measurements
+        {{'profile.health-measurements.header' | translate}}
     </h2>
 </div>
 <div class="row">
+    <div class="col-12">
+        <div class="alert alert-info">
+            {{'profile.health-measurements.heart-rate' | translate}}: {{currentHeartRate}}
+        </div>
+    </div>
     <div class="col-12">
         <div style="display: block;">
             <canvas baseChart

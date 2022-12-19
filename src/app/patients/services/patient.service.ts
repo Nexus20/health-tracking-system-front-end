@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IPatientResult} from "../../hospitals/models/IPatientResult";
+import {IPatientCaretakerResult} from "../../hospitals/models/IPatientCaretakerResult";
 
 @Injectable({
     providedIn: 'root'
@@ -31,5 +32,9 @@ export class PatientService {
 
     public addDoctor(id: string, body: FormData) {
         return this.httpClient.patch(`${this.api}patient/${id}/add-doctor`, body);
+    }
+
+    public getCaretaker(id: string) {
+        return this.httpClient.get<IPatientCaretakerResult>(`${this.api}patient/${id}/caretaker`);
     }
 }

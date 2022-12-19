@@ -15,9 +15,11 @@ export class ProfileComponent implements OnInit {
     hospitalId?: string;
     doctorId?: string;
     patientId?: string;
+    patientCaretakerId?: string;
     isUserHospitalAdmin: boolean = false;
     isUserDoctor: boolean = false;
     isUserPatient: boolean = false;
+    isUserPatientCaretaker: boolean = false;
 
     constructor(private store: Store) {
     }
@@ -45,6 +47,12 @@ export class ProfileComponent implements OnInit {
             this.isUserPatient = true;
             this.patientId = patientId;
             this.hospitalId = this.store.selectSnapshot(ProfileState.selectPatientHospitalId);
+        }
+
+        const patientCaretakerId = this.store.selectSnapshot(AuthState.patientCaretakerId);
+        if(patientCaretakerId !== undefined) {
+            this.isUserPatientCaretaker = true;
+            this.patientCaretakerId = patientCaretakerId;
         }
     }
 }

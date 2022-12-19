@@ -1,0 +1,40 @@
+<ng-container *ngIf="patients !== undefined">
+    <ng-container *ngIf="patients.length > 0; else noPatientsBlock">
+        <div class="row mt-3">
+            <h2 class="col-12">{{'profile.patients.header' | translate}}:</h2>
+        </div>
+        <div class="row">
+            <ng-container *ngFor="let patient of patients">
+                <div class="col-6 gap-1">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            {{patient.firstName}} {{patient.lastName}}
+                        </div>
+                        <div class="card-body">
+                            <div>{{'profile.personal.email' | translate}}: {{patient.email}}</div>
+                            <div>{{'profile.personal.phone' | translate}}: {{patient.phone}}</div>
+                            <div>{{'profile.personal.dob' | translate}}: {{patient.birthDate}}</div>
+                        </div>
+                        <div class="card-footer">
+                            <a [routerLink]="['/patients/' + patient.id]" class="btn btn-primary">{{'common.details' | translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+    <ng-template #noPatientsBlock>
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-3">
+                    <div class="card-header">Your patients</div>
+                    <div class="card-body">
+                        <h3>Seems like now you don't have any patients assigned to you</h3>
+                        <a class="btn btn-primary" [routerLink]="['/patients/create']">Add patient profile</a>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>

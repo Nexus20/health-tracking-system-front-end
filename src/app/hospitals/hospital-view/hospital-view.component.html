@@ -16,8 +16,11 @@
                         <div>{{'hospitals.patients-count' | translate}}: {{hospitalInfo.patientsCount}}</div>
                     </div>
                     <div class="card-footer d-flex gap-2">
-                        <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
-                        <a [routerLink]="['administrators']" class="btn btn-primary">{{'hospital-view.administrators' | translate}}</a>
+                        <ng-container *ngIf="isUserRoot">
+                            <a [routerLink]="['edit']" class="btn btn-primary">{{'common.edit' | translate}}</a>
+                            <a [routerLink]="['administrators']"
+                               class="btn btn-primary">{{'hospital-view.administrators' | translate}}</a>
+                        </ng-container>
                     </div>
                 </div>
             </div>

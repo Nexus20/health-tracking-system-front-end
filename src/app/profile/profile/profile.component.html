@@ -2,7 +2,7 @@
 <main>
     <div class="container">
         <div class="row">
-            <h2>Welcome, {{profileInfo.firstName}} {{profileInfo.lastName}}</h2>
+            <h2>{{'WELCOME' | translate}}, {{profileInfo.firstName}} {{profileInfo.lastName}}</h2>
         </div>
         <div class="row">
             <div class="col-12 mb-3">
@@ -29,7 +29,11 @@
         </div>
         <ng-container *ngIf="patientId !== undefined">
             <app-profile-patient-doctor [patientId]="patientId"></app-profile-patient-doctor>
+            <app-profile-patient-patient-caretaker [patientId]="patientId"></app-profile-patient-patient-caretaker>
             <app-profile-health-measurements [patientId]="patientId"></app-profile-health-measurements>
+        </ng-container>
+        <ng-container *ngIf="patientCaretakerId !== undefined">
+            <app-profile-patient-caretaker-patients [patientCaretakerId]="patientCaretakerId"></app-profile-patient-caretaker-patients>
         </ng-container>
     </div>
 </main>

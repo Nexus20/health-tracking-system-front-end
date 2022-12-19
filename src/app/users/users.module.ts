@@ -8,6 +8,7 @@ import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "../shared/shared.module";
+import {TranslateModule} from "@ngx-translate/core";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {SharedModule} from "../shared/shared.module";
             {path: 'login', component: LoginComponent},
         ]),
         SharedModule,
+        TranslateModule,
     ]
 })
 export class UsersModule {

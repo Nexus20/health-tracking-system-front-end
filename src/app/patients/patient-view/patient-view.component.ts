@@ -13,6 +13,9 @@ import {IDoctorResult} from "../../hospitals/models/IDoctorResult";
 import {GetDoctorById} from "../../doctors/state/doctor.actions";
 import {map} from "rxjs";
 import {DoctorState} from "../../doctors/state/doctor.state";
+import {IPatientCaretakerResult} from "../../hospitals/models/IPatientCaretakerResult";
+import {GetPatientCaretakerByPatientId} from "../../patient-caretakers/state/patient-caretaker.actions";
+import {PatientCaretakerState} from "../../patient-caretakers/state/patient-caretaker.state";
 
 @Component({
   selector: 'app-patient-view',
@@ -23,8 +26,10 @@ export class PatientViewComponent implements OnInit {
 
     patient!: IPatientResult;
     patientDoctor!: IDoctorResult;
+    patientCaretaker!: IPatientCaretakerResult;
     isUserHospitalDoctor: boolean = false;
     isUserHospitalAdmin: boolean = false;
+    isUserPatientCaretaker: boolean = false;
 
     private api = environment.api;
     private signalRClient: SignalrClient;
@@ -66,9 +71,10 @@ export class PatientViewComponent implements OnInit {
             this.patient = patient;
             console.log(patient);
 
+            this.isUserPatientCaretaker = this.store.selectSnapshot(AuthState.patientCaretakerId) !== undefined;
             this.isUserHospitalDoctor = this.store.selectSnapshot(AuthState.doctorId) !== undefined;
 
-            if(this.isUserHospitalDoctor) {
+            if(this.isUserHospitalDoctor || this.isUserPatientCaretaker) {
                 this.connectToSignalRHub();
             }
 
@@ -79,6 +85,14 @@ export class PatientViewComponent implements OnInit {
                     map(() => this.store.selectSnapshot(DoctorState.selectDoctorById(this.patient.doctorId!)))
                 ).subscribe(data => {
                    this.patientDoctor = data;
+                });
+            }
+
+            if(this.patient.patientCaretakerId !== null) {
+                this.store.dispatch(new GetPatientCaretakerByPatientId(this.patient.id)).pipe(
+                    map(() => this.store.selectSnapshot(PatientCaretakerState.selectPatientCaretakerById(this.patient.patientCaretakerId!)))
+                ).subscribe(data => {
+                    this.patientCaretaker = data;
                 });
             }
         })

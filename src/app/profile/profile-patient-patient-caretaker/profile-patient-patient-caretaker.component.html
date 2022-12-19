@@ -1,0 +1,31 @@
+<div class="row mt-3">
+    <h2 class="col-12">
+        {{'profile.patient-caretaker.header' | translate}}
+    </h2>
+</div>
+<ng-container *ngIf="patientCaretakerId !== null; else noCaretakerTemplate">
+    <div class="row">
+        <div class="col-12">
+            <ng-container *ngIf="patientCaretakerInfo !== undefined">
+                <div class="card">
+                    <div class="card-header">{{patientCaretakerInfo.firstName}} {{patientCaretakerInfo.lastName}}</div>
+                    <div class="card-body">
+                        <div>{{'profile.personal.email' | translate}}: {{patientCaretakerInfo.email}}</div>
+                        <div>{{'profile.personal.phone' | translate}}: {{patientCaretakerInfo.phone}}</div>
+                        <div>{{'profile.personal.dob' | translate}}: {{patientCaretakerInfo.birthDate}}</div>
+                    </div>
+                    <div class="card-footer"></div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>
+<ng-template #noCaretakerTemplate>
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+                {{'profile.patient-caretaker.no-doctor-alert' | translate}}
+            </div>
+        </div>
+    </div>
+</ng-template>

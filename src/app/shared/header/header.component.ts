@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
     ngOnInit(): void {
         this.getAvailableLanguages();
         this.selectedLanguage = this.store.selectSnapshot(AuthState.selectLanguage);
-        console.log(this.languages);
         const token = this.store.selectSnapshot(AuthState.token);
 
         if (!token) {
@@ -64,7 +63,6 @@ export class HeaderComponent implements OnInit {
     setLanguage() {
         this.translateService.use(this.selectedLanguage);
         this.store.dispatch(new SetLanguage(this.selectedLanguage));
-        console.log("new language", this.selectedLanguage);
     }
 
     getAvailableLanguages() {
